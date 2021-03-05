@@ -1,14 +1,10 @@
 // ES5
-const { Router } = require('express');
-const {signupPost} = require('../controllers/user')
+const { Router } = require("express");
+const { signupPost } = require("../controllers/user");
 
-const router = Router()
-
+var router = Router();
 
 // http://localhost:3000/api/user/signup
-router.post('/signup',signupPost)
+router.post("/signup", signupPost);
 
-
-
-
-module.exports = router
+module.exports = router;
