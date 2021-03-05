@@ -10,13 +10,14 @@ const port = 5000;
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
 
+// route that handles all incoming user-related requests.
+app.use("/api/user", userRoutes);
+
 app.use("/", (req, res) =>
   res.send(
     "If you see this message, you set up the project right, congrats!",
   ),
 );
-// route that handles all incoming user-related requests.
-app.use("/api/user", userRoutes);
 
 // server is initialized and listening to incoming requests.
 app.listen(port, () => {
