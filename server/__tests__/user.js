@@ -5,15 +5,21 @@ describe("User Sign-Up", () => {
   test("This should return a user json object", async () => {
     const testUser1 = {
       name: "Valerie",
-      lastname: "Reyes",
+      lastName: "Reyes",
       email: "valerie@gmail.com",
       password: "1234",
     };
 
     await axios
-      .post("http://localhost:5000/api/user/signup", testUser1)
+      .post("http://localhost:5000/api/users/signup", testUser1)
       .then((response) => {
-        expect(response.data).toEqual(testUser1);
+        console.log(response.data);
+        const { name, lastName, email, password } = response.data;
+        expect(response.status).toEqual(201);
+        expect(name).toEqual(testUser1.name);
+        expect(lastName).toEqual(testUser1.lastName);
+        expect(email).toEqual(testUser1.email);
+        expect(!!password).toEqual(true);
       });
   });
 });
