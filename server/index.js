@@ -2,7 +2,7 @@
 const express = require("express");
 const userRoutes = require("./routes/user");
 const userTestRoutes = require("./__tests__/routes/user");
-//const useLocalStrategy = require("./Strategies/local");
+const useLocalStrategy = require("./Strategies/local");
 const bodyparser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
@@ -33,23 +33,19 @@ app.use(
   }),
 );
 
-//useLocalStrategy(passport);
+// auth strategy
+useLocalStrategy(passport);
 
+// test routes for development
 if (process.env.NODE_ENV !== "production") {
   app.use("/test/users", userTestRoutes);
 }
 
-// route that handles all incoming user-related requests.
-// http://localhost:5000/api/user
 app.use("/api/users", userRoutes);
 
-app.use("/", (req, res) =>
-  res.send(
-    "If you see this message, you set up the project right, congrats!",
-  ),
-);
+// home page placeholder
+app.use("/", (req, res) => res.send("Home"));
 
-// server is initialized and listening to incoming requests.
 app.listen(port, () => {
   console.log(`Server listening at http://localhost/${port}`);
 });
