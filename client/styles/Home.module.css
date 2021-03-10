@@ -1,19 +1,72 @@
-.container {
+/* .container {
   min-height: 100vh;
-  padding: 0 0.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
+} */
 
-.main {
+/* .main {
   padding: 5rem 0;
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+} */
+
+.jumbotron {
+  background-image: url('../public/cafeteria.jpg');
+  /* width: 900px; */
+  height: 600px;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #F6F6F6;
+}
+.jumbotron h1 {
+  background-color: black;
+  text-align: center;
+}
+
+.how_it_works {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #F6F6F6;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+.how_it_works h2 {
+  color: #53AB4B;
+}
+
+.how_it_works h3 {
+  width: 600px;
+  margin-bottom: 0px;
+}
+.how_it_works p {
+  width: 600px;
+  color: #53AB4B;
+  margin-top: 0px;
+}
+
+.info_box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #53AB4B;
+  color: #F6F6F6;
+  text-align: center;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+.info_box p {
+  width: 50%;
 }
 
 .footer {
@@ -35,32 +88,6 @@
   align-items: center;
 }
 
-.title a {
-  color: #0070f3;
-  text-decoration: none;
-}
-
-.title a:hover,
-.title a:focus,
-.title a:active {
-  text-decoration: underline;
-}
-
-.title {
-  margin: 0;
-  line-height: 1.15;
-  font-size: 4rem;
-}
-
-.title,
-.description {
-  text-align: center;
-}
-
-.description {
-  line-height: 1.5;
-  font-size: 1.5rem;
-}
 
 .code {
   background: #fafafa;
@@ -113,10 +140,55 @@
 .logo {
   height: 1em;
 }
+.register_box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #53AB4B;
+  color: #F6F6F6;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+.register_box img{
+  height: 300px;
+}
+
+.register_box_content {
+  padding: 1rem;
+}
+
+.register_box_content button{
+  padding: 1rem 1.5rem;
+  background-color: #030803;
+  color: #F6F6F6;
+  border: 0;
+  border-radius: 5px;
+}
 
 @media (max-width: 600px) {
-  .grid {
-    width: 100%;
-    flex-direction: column;
+  .info_box h2{
+    width: 90%;
+  }
+  .info_box p {
+    width: 90%;
+  }
+
+  .how_it_works h3 {
+    width: 350px;
+    margin-bottom: 0px;
+  }
+  .how_it_works p {
+    width: 350px;
+    color: #53AB4B;
+    margin-top: 0px;
+  }
+  .register_box img{
+    height: 150px;
+  }
+  .register_box_content {
+    padding: 1rem;
   }
 }
+
+
