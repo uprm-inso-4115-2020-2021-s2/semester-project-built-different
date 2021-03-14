@@ -3,6 +3,9 @@ import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import Navbar from '../components/Navbar';
 
+import { Button } from 'react-bootstrap';
+
+
 export default function Home() {
   return (
     <div className={styles.container}>
@@ -36,7 +39,7 @@ export default function Home() {
           <div className={styles.register_box_content}>
             <h2>No vuelvas a hacer otra fila mas!</h2>
             <p>Crea tu cuenta y ordena ya</p>
-            <button>Registrate</button>
+            <Button>Registrate</Button>
           </div>
           <img src="/tipo_paquete.png" />
         </div>
