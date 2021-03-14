@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "next build",
-    "dev": "nodemon index.js",
+    "dev": "next dev",
     "deploy": "npm run build && NODE_ENV=production node index.js",
     "eslint-check": "eslint --print-config path/to/main.js | eslint-config-prettier-check",
     "format": "prettier --write \"**/*.+(js|jsx|json|yml|yaml|css|md|vue)\"",
@@ -33,8 +33,7 @@
     "prop-types": "^15.7.2",
     "react": "17.0.1",
     "react-bootstrap": "^1.5.2",
-    "react-dom": "17.0.1",
-    "tailwindcss": "^2.0.3"
+    "react-dom": "17.0.1"
   },
   "devDependencies": {
     "eslint": "^7.2.0",
