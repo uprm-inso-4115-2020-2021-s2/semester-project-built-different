@@ -1,0 +1,7 @@
+node_modules/
+.dockerignore
+.eslintrc.json
+.prettierrc
+Dockerfile
+yarn-error.log
+yarn.lock
