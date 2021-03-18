@@ -44,7 +44,11 @@ if (process.env.NODE_ENV !== "production") {
 app.use("/api/users", userRoutes);
 
 // home page placeholder
-app.use("/", (req, res) => res.send("Home"));
+app.use("/", (req, res) =>
+  res.send(
+    "Nomar this isn't the home page this is the server root directory ;)",
+  ),
+);
 
 app.listen(port, () => {
   console.log(`Server listening at http://localhost/${port}`);
