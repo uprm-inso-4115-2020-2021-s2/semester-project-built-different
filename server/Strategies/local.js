@@ -1,4 +1,5 @@
 const LocalStrategy = require("passport-local").Strategy;
+// must create user table in db and replace the function
 const db = require("../services/db");
 const bcrypt = require("bcrypt");
 const useLocalStrategy = (passport) => {
