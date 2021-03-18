@@ -16,7 +16,7 @@ const router = Router();
 @RETURN:
   - JSON order Object
 */
-router.post("orders/add", ordersAdd);
+router.post("/add", ordersAdd);
 
 /*
 @TYPE:
@@ -27,7 +27,7 @@ router.post("orders/add", ordersAdd);
   - Array of JSON objects (orders)
 */
 
-router.post("orders/get", ordersGet);
+router.post("/get", ordersGet);
 
 /*
 @TYPE:
@@ -38,7 +38,7 @@ router.post("orders/get", ordersGet);
   - JSON order Object
 */
 
-router.get("orders/remove/:id", ordersRemove);
+router.get("/remove/:id", ordersRemove);
 
 /*
 @TYPE:
@@ -49,6 +49,6 @@ router.get("orders/remove/:id", ordersRemove);
   - JSON order Object
 */
 
-router.update("orders/update/:id?", ordersUpdate);
+router.update("/update/:id?", ordersUpdate);
 
 module.exports = router;

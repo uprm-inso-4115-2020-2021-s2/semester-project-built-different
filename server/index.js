@@ -1,7 +1,8 @@
 // ES5 Syntax
 const express = require("express");
 const userRoutes = require("./routes/user");
-const userTestRoutes = require("./__tests__/routes/user");
+//Uncomment when routes are ready
+//const orderRoutes = require("./routes/order");
 const useLocalStrategy = require("./Strategies/local");
 const bodyparser = require("body-parser");
 const cookieParser = require("cookie-parser");
@@ -36,19 +37,13 @@ app.use(
 // auth strategy
 useLocalStrategy(passport);
 
-// test routes for development
-if (process.env.NODE_ENV !== "production") {
-  app.use("/test/users", userTestRoutes);
-}
-
 app.use("/api/users", userRoutes);
 
+// Uncomment when routes are ready
+//app.use("/api/orders", orderRoutes);
+
 // home page placeholder
-app.use("/", (req, res) =>
-  res.send(
-    "Nomar this isn't the home page this is the server root directory ;)",
-  ),
-);
+app.use("/", (req, res) => res.send("Server running..."));
 
 app.listen(port, () => {
   console.log(`Server listening at http://localhost/${port}`);
