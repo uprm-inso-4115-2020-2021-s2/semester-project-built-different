@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  client:
+    build:
+      dockerfile: Dockerfile
+      context: ./client
+    restart: always
+    ports:
+      - "3000:3000"
+  server:
+    build:
+      dockerfile: Dockerfile
+      context: ./server
+    restart: always
+    ports:
+      - "5000:5000"
