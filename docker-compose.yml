@@ -12,6 +12,18 @@ services:
     build:
       dockerfile: Dockerfile
       context: ./server
+    depends_on:
+      - db
     restart: always
     ports:
       - "5000:5000"
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: rum2go:1.0-db
+    volumes:
+      - ./database/pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
