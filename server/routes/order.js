@@ -1,10 +1,10 @@
 const { Router } = require("express");
 // const pool = require("./services/db");
 const {
-  ordersAdd,
+  // ordersAdd,
   ordersGet,
-  ordersRemove,
-  ordersUpdate,
+  // ordersRemove,
+  // ordersUpdate,
 } = require("../controllers/order");
 const router = Router();
 
@@ -16,7 +16,7 @@ const router = Router();
 @RETURN:
   - JSON order Object
 */
-router.post("/add", ordersAdd);
+// router.post("/add", ordersAdd);
 
 /*
 @TYPE:
@@ -38,7 +38,7 @@ router.post("/get", ordersGet);
   - JSON order Object
 */
 
-router.get("/remove/:id", ordersRemove);
+// router.get("/remove/:id", ordersRemove);
 
 /*
 @TYPE:
@@ -49,6 +49,6 @@ router.get("/remove/:id", ordersRemove);
   - JSON order Object
 */
 
-router.update("/update/:id?", ordersUpdate);
+// router.update("/update/:id?", ordersUpdate);
 
 module.exports = router;

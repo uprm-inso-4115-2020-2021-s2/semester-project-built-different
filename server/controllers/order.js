@@ -1,3 +1,6 @@
+const pool = require("../index");
+console.log(pool);
+
 /*
 @TYPE:
   PUBLIC
@@ -6,7 +9,7 @@
 @RETURN:
   - JSON order Object
 */
-const ordersAdd = await (req, res) => {}
+// const ordersAdd = async (req, res) => {};
 
 /*
 @TYPE:
@@ -18,7 +21,16 @@ const ordersAdd = await (req, res) => {}
   - Array of order objects
 */
 
-const ordersGet = await (req, res) => {};
+const ordersGet = async (req, res) => {
+  // missing filtering parameter, implement later
+  await req.pool.query("SELECT * FROM Order_Details", (err, r) => {
+    if (err) {
+      res.json("Error");
+    } else {
+      res.json(r.rows);
+    }
+  });
+};
 
 /*
 @TYPE:
@@ -29,7 +41,7 @@ const ordersGet = await (req, res) => {};
   - JSON order Object
 */
 
-const ordersRemove = await (req, res) => {};
+// const ordersRemove = async (req, res) => {};
 
 /*
 @TYPE:
@@ -40,6 +52,10 @@ const ordersRemove = await (req, res) => {};
   - JSON order Object
 */
 
-const ordersUpdate = await (req,res)=>{};
+// const ordersUpdate = async (req, res) => {};
 
-module.exports = { ordersAdd, ordersGet, ordersRemove,ordersUpdate };
+module.exports = {
+  //ordersAdd,
+  ordersGet,
+  //ordersRemove, ordersUpdate
+};
