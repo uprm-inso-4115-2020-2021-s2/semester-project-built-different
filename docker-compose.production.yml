@@ -8,32 +8,24 @@ services:
     links:
       - server
     build:
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.production
       context: ./client
     restart: always
     ports:
       - "3000:3000"
-    volumes:
-      - ./client:/client
   server:
     container_name: rum2go_API
     build:
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.production
       context: ./server
     depends_on:
       - db
     links:
       - db
+
     restart: always
     ports:
       - "5000:5000"
-    volumes:
-      - ./server/controllers:/server/controllers
-      - ./server/services:/server/services
-      - ./server/routes:/server/routes
-      - ./server/strategies:/server/strategies
-      - ./server/index.js:/server/index.js
-
   db:
     container_name: rum2go_DB
 

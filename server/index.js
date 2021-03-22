@@ -3,7 +3,7 @@ const express = require("express");
 const userRoutes = require("./routes/user");
 //Uncomment when routes are ready
 const orderRoutes = require("./routes/order");
-const useLocalStrategy = require("./Strategies/local");
+const useLocalStrategy = require("./strategies/local");
 const bodyparser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");

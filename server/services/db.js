@@ -6,7 +6,7 @@ const initializeDB = () => {
     user: "postgres",
     password: "postgres",
     database: "rum2go:1.0-db",
-    host: process.env.NODE_ENV === "production" ? "db" : "localhost",
+    host: "db",
     port: 5432,
   });
 

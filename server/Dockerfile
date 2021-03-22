@@ -1,14 +1,13 @@
 FROM node
 
-COPY . /app
+COPY package.json ./server/
 
-WORKDIR /app
+WORKDIR /server
 
-ENV NODE_ENV=production
+ENV NODE_ENV=development
 
 RUN npm install
 
-#Does not work on heroku
 EXPOSE $PORT
 
-CMD ["node","index.js"]
+CMD ["npm","run","dev"]

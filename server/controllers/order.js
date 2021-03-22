@@ -27,7 +27,7 @@ const ordersGet = async (req, res) => {
     if (err) {
       res.json("Error");
     } else {
-      res.json(r.rows);
+      res.json(r);
     }
   });
 };

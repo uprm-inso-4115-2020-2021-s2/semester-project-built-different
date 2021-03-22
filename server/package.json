@@ -18,7 +18,7 @@
   },
   "scripts": {
     "test": "jest --coverage",
-    "container": "docker build -t rum2go-server:1.0 . && docker run -p 5000:5000 rum2go-server:1.0",
+    "container": "docker build -t rum2go_API . && docker run -p 5000:5000 rum2go_API",
     "dev": "nodemon index.js",
     "eslint-check": "eslint --print-config path/to/main.js | eslint-config-prettier-check",
     "format": "prettier --write \"**/*.+(js|jsx|json|yml|yaml|css|md|vue)\"",
