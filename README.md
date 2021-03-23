@@ -23,10 +23,10 @@ A quick recap of the tools that were used for this program.
     For testing the web-app.
 ### Node.js and Express.js
     It has amazing integrated libraries that make the process of building APIs very easy.
-## Getting Started
+# Getting Started
 This project consists of three docker containers: rum2go_UI, rum2go_API, rum2go_DB. [docker-compose](https://docs.docker.com/compose/) is used to run all containers on a same network.
 
-# Development
+## Development
 In the source directory of the project run the following command:
 
 ```
