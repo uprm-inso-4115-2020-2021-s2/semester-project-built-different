@@ -29,9 +29,10 @@ This project consists of three docker containers: rum2go_UI, rum2go_API, rum2go_
 # Development
 In the source directory of the project run the following command:
 
-    ```
-    docker-compose up
-    ```
+```
+docker-compose up
+```
+    
   This will build the containers the very first time. Any subsequent builds (let's say you changed a volume that isn't mapped to the project and you need to rebuild the project) will require the following command:
 
 ```
