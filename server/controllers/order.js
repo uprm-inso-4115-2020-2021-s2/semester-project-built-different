@@ -22,12 +22,27 @@ console.log(pool);
 */
 
 const ordersGet = async (req, res) => {
-  // missing filtering parameter, implement later
-  await req.pool.query("SELECT * FROM Order_Details", (err, r) => {
+  const { body } = req;
+
+  let selectorString = "SELECT * FROM Order_Details";
+  const selectors = Object.keys(body);
+
+  if (selectors.length > 0) {
+    selectorString += " WHERE ";
+    selectors.forEach((filter, i) => {
+      console.log(i, selectors.length);
+      selectorString += `${filter}='${body[filter]}'`;
+      if (i < selectors.length - 1) selectorString += " AND ";
+    });
+  }
+
+  console.log(selectorString);
+
+  await req.pool.query(selectorString, (err, r) => {
     if (err) {
       res.json("Error");
     } else {
-      res.json(r);
+      res.json(r.rows);
     }
   });
 };

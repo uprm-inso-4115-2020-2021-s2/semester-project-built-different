@@ -2,6 +2,7 @@ FROM postgres:alpine
 
 COPY schema.sql sql/
 
+
 WORKDIR sql/
 
 EXPOSE $PORT
