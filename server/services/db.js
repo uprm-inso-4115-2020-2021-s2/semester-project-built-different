@@ -10,12 +10,6 @@ const initializeDB = () => {
     port: 5432,
   });
 
-  pool.connect();
-
-  pool.query("SELECT NOW()", (err, res) => {
-    console.log(err, res);
-  });
-
   return pool;
 };
 

@@ -9,8 +9,18 @@ console.log(pool);
 @RETURN:
   - JSON order Object
 */
-// const ordersAdd = async (req, res) => {};
+const ordersAdd = async (req, res, pool) => {
+  let insertString =
+    "INSERT INTO Order_Details (order_date, status, comment, order_total, c_id) VALUES ($1,$2,$3,$4,$5)";
 
+  await pool.query(insertString, Object.values(req.body), (err) => {
+    if (err) {
+      res.json(err);
+    } else {
+      res.json(req.body);
+    }
+  });
+};
 /*
 @TYPE:
   PUBLIC
@@ -21,7 +31,7 @@ console.log(pool);
   - Array of order objects
 */
 
-const ordersGet = async (req, res) => {
+const ordersGet = async (req, res, pool) => {
   const { body } = req;
 
   let selectorString = "SELECT * FROM Order_Details";
@@ -38,7 +48,7 @@ const ordersGet = async (req, res) => {
 
   console.log(selectorString);
 
-  await req.pool.query(selectorString, (err, r) => {
+  await pool.query(selectorString, (err, r) => {
     if (err) {
       res.json("Error");
     } else {
@@ -70,7 +80,7 @@ const ordersGet = async (req, res) => {
 // const ordersUpdate = async (req, res) => {};
 
 module.exports = {
-  //ordersAdd,
+  ordersAdd,
   ordersGet,
   //ordersRemove, ordersUpdate
 };

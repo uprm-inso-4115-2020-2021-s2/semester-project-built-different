@@ -1,8 +1,8 @@
-const LocalStrategy = require("passport-local").Strategy;
-// must create user table in db and replace the function
-const db = require("../services/db");
 const bcrypt = require("bcrypt");
-const useLocalStrategy = (passport) => {
+const LocalStrategy = require("passport-local").Strategy;
+
+// use local authentication
+const useLocalStrategy = (passport, pool) => {
   passport.use(
     new LocalStrategy(
       {
@@ -11,7 +11,13 @@ const useLocalStrategy = (passport) => {
       },
       async (email, password, done) => {
         // fetch user from db
-        const user = await db.find("users", { email })[0];
+        const user = (
+          await pool.query(
+            "SELECT * FROM Customer WHERE email = $1",
+            [email],
+          )
+        ).rows[0];
+
         if (!user) {
           return done(null, false, {
             message: "No user with that email!",
@@ -20,22 +26,30 @@ const useLocalStrategy = (passport) => {
 
         try {
           if (await bcrypt.compare(password, user.password)) {
-            done(null, user);
-          } else {
-            return done(null, false, {
-              message: "password is incorrect!",
-            });
+            return done(null, user);
           }
+          return done(null, false, {
+            message: "password is incorrect!",
+          });
         } catch (err) {
           return done(err);
         }
       },
     ),
   );
+  // store uid in session
+  passport.serializeUser((user, done) => done(null, user.c_id));
 
-  passport.serializeUser((user, done) => done(null, user._id));
-  passport.deserializeUser((_id, done) =>
-    done(null, db.findById(_id)),
+  // retrieve user by the provided uid in the serializeUser function
+  passport.deserializeUser(async (c_id, done) =>
+    done(
+      null,
+      (
+        await pool.query("SELECT * FROM Customer WHERE c_id = $1", [
+          c_id,
+        ])
+      ).rows[0],
+    ),
   );
 };
 

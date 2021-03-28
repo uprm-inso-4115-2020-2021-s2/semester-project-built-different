@@ -47,5 +47,6 @@ services:
     restart: always
     volumes:
       - ./database/db/pgdata:/var/lib/postgresql/data
+      - ./database/schema.sql:/sql/schema.sql
     ports:
       - "5432:5432"

@@ -41,18 +41,11 @@ app.use(
 const pool = initializeDB();
 
 // auth strategy
-useLocalStrategy(passport);
+useLocalStrategy(passport, pool);
 
-app.use("/api/users", userRoutes);
+app.use("/api/users", userRoutes(pool));
 
-app.use(
-  "/api/orders",
-  (req, res, nxt) => {
-    req.pool = pool;
-    nxt();
-  },
-  orderRoutes,
-);
+app.use("/api/orders", orderRoutes(pool));
 
 // home page placeholder
 app.use("/", (req, res) => res.send("Server running..."));
