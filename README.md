@@ -23,28 +23,40 @@ A quick recap of the tools that were used for this program.
     For testing the web-app.
 ### Node.js and Express.js
     It has amazing integrated libraries that make the process of building APIs very easy.
-## Getting Started
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Getting Started
+This project consists of three docker containers: rum2go_UI, rum2go_API, rum2go_DB. [docker-compose](https://docs.docker.com/compose/) is used to run all containers on a same network.
 
-1. First, run the development server:
+## Development
+In the source directory of the project run the following command:
 
-    ```bash
-    npm run dev
-    # or
-    yarn dev
-    ```
+```
+docker-compose up
+```
+    
+  This will build the containers the very first time. Any subsequent builds (let's say you changed a volume that isn't mapped to the project and you need to rebuild the project) will require the following command:
 
-* Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```
+  docker compose build 
+  
+  #to build and run
+  
+  docker-compose up --build
+```
 
-* [API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+* rum2go_UI: [http://localhost:3000/](http://localhost:3000/)
+* rum2go_API: [http://localhost:5000/](http://localhost:5000/)
+* rum2go_DB: [http://localhost:5432/](http://localhost:5432/)
 
-* The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-## How to run
-To learn more about Next.js, take a look at the following resources:
-## Vercel - Deployment
-### What is vercel and why are we using it
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+#Accessing the postgres istance:
+To access the database manually through the terminal run the following command:
+```
+# Access the bash terminal in the container
+docker exec -it rum2go_DB /bin/bash
+
+#Then run the following command to run psql as the postgres user inside the rum2go:1.0-db #database
+
+psql -U postgres -d rum2go:1.0-db
+```
 ## Styling Guide
 ```diff
 Colors to use: 
