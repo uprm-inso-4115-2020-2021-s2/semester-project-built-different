@@ -39,8 +39,7 @@ const orderRoutes = (pool) => {
   - id of the removed order
 */
 
-  router.delete("/remove/:id", (req, res) =>
-    ordersRemove(req, res, pool),
+  router.delete("/remove/:id", (req, res) => ordersRemove(req, res, pool)
   );
 
   /*
