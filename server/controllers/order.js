@@ -61,10 +61,21 @@ const ordersGet = async (req, res, pool) => {
 @DESC:
   - Remove order by id
 @RETURN:
-  - JSON order Object
+  - id of the removed order
 */
 
-// const ordersRemove = async (req, res) => {};
+const ordersRemove = async (req, res, pool) => {
+  const { id } = req.params;
+  let selectorString = "DELETE FROM Order_Details WHERE o_id = $1";
+
+  await pool.query(selectorString, [id], (err) => {
+    if (err) {
+      res.json(err);
+    } else {
+      res.json(id);
+    }
+  });
+};
 
 /*
 @TYPE:
@@ -80,5 +91,6 @@ const ordersGet = async (req, res, pool) => {
 module.exports = {
   ordersAdd,
   ordersGet,
-  //ordersRemove, ordersUpdate
+  ordersRemove,
+  //ordersUpdate,
 };

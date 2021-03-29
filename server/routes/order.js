@@ -4,7 +4,7 @@ const orderRoutes = (pool) => {
   const {
     ordersAdd,
     ordersGet,
-    // ordersRemove,
+    ordersRemove,
     // ordersUpdate,
   } = require("../controllers/order");
   const router = Router();
@@ -37,10 +37,11 @@ const orderRoutes = (pool) => {
 @DESC:
   - remove an order by id
 @RETURN:
-  - JSON order Object
+  - id of the removed order
 */
 
-  // router.get("/remove/:id", ordersRemove);
+  router.delete("/remove/:id", (req, res) => ordersRemove(req, res, pool)
+  );
 
   /*
 @TYPE:
