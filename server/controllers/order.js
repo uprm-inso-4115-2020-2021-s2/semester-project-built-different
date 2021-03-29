@@ -63,20 +63,19 @@ const ordersGet = async (req, res, pool) => {
 @DESC:
   - Remove order by id
 @RETURN:
-  - JSON order Object
+  - id of the removed order
 */
 
 const ordersRemove = async (req, res, pool) => {
-  const { id }= parseInt(req.params.id);
+  const { id } = req.params;
   let selectorString = "DELETE FROM Order_Details WHERE o_id = $1";
 
   await pool.query(selectorString, [id], (err) => {
     if (err) {
       res.json(err);
     } else {
-      res.json(req.body);
+      res.json(id);
     }
-    //res.status(200).send(`Order deleted with ID: ${req.body}`)
   });
 };
 
@@ -94,5 +93,6 @@ const ordersRemove = async (req, res, pool) => {
 module.exports = {
   ordersAdd,
   ordersGet,
-  //ordersRemove, ordersUpdate
+  ordersRemove,
+  //ordersUpdate,
 };

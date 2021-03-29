@@ -36,10 +36,12 @@ const orderRoutes = (pool) => {
 @DESC:
   - remove an order by id
 @RETURN:
-  - JSON order Object
+  - id of the removed order
 */
 
-  router.delete("/remove/:id", (req, res) => ordersRemove(req, res, pool));
+  router.delete("/remove/:id", (req, res) =>
+    ordersRemove(req, res, pool),
+  );
 
   /*
 @TYPE:
