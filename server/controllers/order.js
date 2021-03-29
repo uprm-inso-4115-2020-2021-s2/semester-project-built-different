@@ -46,8 +46,6 @@ const ordersGet = async (req, res, pool) => {
     });
   }
 
-  console.log(selectorString);
-
   await pool.query(selectorString, (err, r) => {
     if (err) {
       res.json("Error");

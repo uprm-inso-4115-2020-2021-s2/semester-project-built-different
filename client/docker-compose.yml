@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  client:
+    container_name: rum2go_UI
+    depends_on:
+      - db
+    links:
+      - server
+    build:
+      dockerfile: Dockerfile
+      context: ./client
+    restart: always
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/client

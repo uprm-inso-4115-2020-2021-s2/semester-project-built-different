@@ -10,4 +10,5 @@ RUN npm install --force
 
 EXPOSE $PORT
 
+
 CMD ["npm","run","dev"]
