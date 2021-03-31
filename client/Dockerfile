@@ -1,15 +1,14 @@
 FROM node
 
-WORKDIR /app
+WORKDIR /client
 
-COPY . /app
+COPY package.json /client
 
-ENV NODE_ENV=production
+ENV NODE_ENV=development
 
-RUN npm install --force --only=production
-
-RUN npm run build
+RUN npm install --force
 
 EXPOSE $PORT
 
-CMD ["npm","run","start"]
+
+CMD ["npm","run","dev"]

@@ -1,0 +1,14 @@
+FROM node
+
+COPY . /server
+
+WORKDIR /server
+
+ENV NODE_ENV=production
+
+RUN npm install
+
+#Does not work on heroku
+EXPOSE $PORT
+
+CMD ["node","index.js"]

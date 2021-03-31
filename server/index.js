@@ -2,14 +2,15 @@
 const express = require("express");
 const userRoutes = require("./routes/user");
 //Uncomment when routes are ready
-//const orderRoutes = require("./routes/order");
-const useLocalStrategy = require("./Strategies/local");
+const orderRoutes = require("./routes/order");
+const useLocalStrategy = require("./strategies/local");
 const bodyparser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const passport = require("passport");
 const flash = require("express-flash");
 const session = require("express-session");
+const initializeDB = require("./services/db");
 
 // initialized express instance
 const app = express();
@@ -30,17 +31,21 @@ app.use(
   session({
     secret: "built-different",
     resave: false,
-    saveUnitialized: false,
+    saveUninitialized: true,
+    cookie: { secure: true },
   }),
 );
 
+// init DB
+
+const pool = initializeDB();
+
 // auth strategy
-useLocalStrategy(passport);
+useLocalStrategy(passport, pool);
 
-app.use("/api/users", userRoutes);
+app.use("/api/users", userRoutes(pool));
 
-// Uncomment when routes are ready
-//app.use("/api/orders", orderRoutes);
+app.use("/api/orders", orderRoutes(pool));
 
 // home page placeholder
 app.use("/", (req, res) => res.send("Server running..."));
@@ -48,3 +53,5 @@ app.use("/", (req, res) => res.send("Server running..."));
 app.listen(port, () => {
   console.log(`Server listening at http://localhost/${port}`);
 });
+
+module.exports = pool;

@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  server:
+    container_name: rum2go_API
+    build:
+      dockerfile: Dockerfile
+      context: ./server
+    depends_on:
+      - db
+    links:
+      - db
+    restart: always
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./controllers:/server/controllers
+      - ./services:/server/services
+      - ./routes:/server/routes
+      - ./strategies:/server/strategies
+      - ./index.js:/server/index.js

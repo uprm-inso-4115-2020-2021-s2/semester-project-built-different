@@ -6,7 +6,6 @@
     "build": "next build",
     "dev": "next dev",
     "start": "next start",
-    "container": "docker build -t rum2go-ui:1.0 . && docker run -p 3000:3000 rum2go-ui:1.0",
     "eslint-check": "eslint --print-config path/to/main.js | eslint-config-prettier-check",
     "format": "prettier --write \"**/*.+(js|jsx|json|yml|yaml|css|md|vue)\"",
     "lint": "eslint ."

@@ -1,14 +1,15 @@
 const { Router } = require("express");
-// const pool = require("./services/db");
-const {
-  ordersAdd,
-  ordersGet,
-  ordersRemove,
-  ordersUpdate,
-} = require("../controllers/order");
-const router = Router();
 
-/*
+const orderRoutes = (pool) => {
+  const {
+    ordersAdd,
+    ordersGet,
+    ordersRemove,
+    ordersUpdate,
+  } = require("../controllers/order");
+  const router = Router();
+
+  /*
 @TYPE:
   POST
 @DESC:
@@ -16,9 +17,10 @@ const router = Router();
 @RETURN:
   - JSON order Object
 */
-router.post("/add", ordersAdd);
 
-/*
+  router.post("/add", (req, res) => ordersAdd(req, res, pool));
+
+  /*
 @TYPE:
   POST
 @DESC:
@@ -27,20 +29,22 @@ router.post("/add", ordersAdd);
   - Array of JSON objects (orders)
 */
 
-router.post("/get", ordersGet);
+  router.post("/get/:id?", (req, res) => ordersGet(req, res, pool));
 
-/*
+  /*
 @TYPE:
   GET
 @DESC:
   - remove an order by id
 @RETURN:
-  - JSON order Object
+  - id of the removed order
 */
 
-router.get("/remove/:id", ordersRemove);
+  router.delete("/remove/:id?", (req, res) =>
+    ordersRemove(req, res, pool),
+  );
 
-/*
+  /*
 @TYPE:
   UPDATE
 @DESC:
@@ -48,7 +52,11 @@ router.get("/remove/:id", ordersRemove);
 @RETURN:
   - JSON order Object
 */
+  router.put("/update/:id?", (req, res) =>
+    ordersUpdate(req, res, pool),
+  );
 
-router.update("/update/:id?", ordersUpdate);
+  return router;
+};
 
-module.exports = router;
+module.exports = orderRoutes;
