@@ -11,7 +11,7 @@ console.log(pool);
 */
 const ordersAdd = async (req, res, pool) => {
   let insertString =
-    "INSERT INTO Order_Details (order_date, status, comment, order_total, c_id) VALUES ($1,$2,$3,$4,$5)";
+    "INSERT INTO Order_Details(order_date, status, comment, order_total, c_id) VALUES($1,$2,$3,$4,$5)";
 
   await pool.query(insertString, Object.values(req.body), (err) => {
     if (err) {
@@ -81,16 +81,38 @@ const ordersRemove = async (req, res, pool) => {
 @TYPE:
   PUBLIC
 @DESC:
-  - update all orders that fullfill the query or by id
+  - update all orders rows that fit the filter and by id
 @RETURN:
-  - JSON order Object
+  - id of the updated order
 */
 
-// const ordersUpdate = async (req, res) => {};
+const ordersUpdate = async (req, res, pool) => {
+  const { id } = req.params;
+
+  let selectorString = "UPDATE Order_Details SET";
+  const selectors = Object.keys(req.body);
+
+  selectors.forEach((filter, i) => {
+    selectorString += `\t${filter}=$${i + 1}`;
+    if (i !== selectors.length - 1) selectorString += ",";
+  });
+
+  if (id) selectorString += `\tWHERE o_id = ${id}`;
+
+  console.log(selectorString);
+
+  await pool.query(selectorString, Object.values(req.body), (err) => {
+    if (err) {
+      res.json(err);
+    } else {
+      res.status(200).end();
+    }
+  });
+};
 
 module.exports = {
   ordersAdd,
   ordersGet,
   ordersRemove,
-  //ordersUpdate,
+  ordersUpdate,
 };
