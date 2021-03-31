@@ -29,7 +29,7 @@ const orderRoutes = (pool) => {
   - Array of JSON objects (orders)
 */
 
-  router.post("/get", (req, res) => ordersGet(req, res, pool));
+  router.post("/get/:id?", (req, res) => ordersGet(req, res, pool));
 
   /*
 @TYPE:
@@ -40,7 +40,7 @@ const orderRoutes = (pool) => {
   - id of the removed order
 */
 
-  router.delete("/remove/:id", (req, res) =>
+  router.delete("/remove/:id?", (req, res) =>
     ordersRemove(req, res, pool),
   );
 

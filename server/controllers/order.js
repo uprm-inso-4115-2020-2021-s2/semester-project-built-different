@@ -33,26 +33,34 @@ const ordersAdd = async (req, res, pool) => {
 
 const ordersGet = async (req, res, pool) => {
   const { body } = req;
+  const { id } = req.params;
 
   let selectorString = "SELECT * FROM Order_Details";
   const selectors = Object.keys(body);
+  let values = Object.values(req.body);
 
-  if (selectors.length > 0) {
-    selectorString += " WHERE ";
-    selectors.forEach((filter, i) => {
-      console.log(i, selectors.length);
-      selectorString += `${filter}='${body[filter]}'`;
-      if (i < selectors.length - 1) selectorString += " AND ";
-    });
+  if (selectors.lenth > 0 || id) selectorString += "\tWHERE ";
+
+  selectors.forEach((filter, i) => {
+    selectorString += `${filter}=$${i + 1}`;
+    if (i < selectors.length - 1) selectorString += "\tAND ";
+  });
+  if (id) {
+    selectorString += `\t_id=$${selectors.length + 1}`;
+    values.push(id);
   }
 
-  await pool.query(selectorString, (err, r) => {
-    if (err) {
-      res.json("Error");
-    } else {
-      res.json(r.rows);
-    }
-  });
+  await pool.query(
+    selectorString,
+    Object.values(req.body),
+    (err, r) => {
+      if (err) {
+        res.json(err);
+      } else {
+        res.json(r.rows);
+      }
+    },
+  );
 };
 
 /*
@@ -66,13 +74,28 @@ const ordersGet = async (req, res, pool) => {
 
 const ordersRemove = async (req, res, pool) => {
   const { id } = req.params;
-  let selectorString = "DELETE FROM Order_Details WHERE o_id = $1";
+  let selectorString = "DELETE FROM Order_Details";
 
-  await pool.query(selectorString, [id], (err) => {
+  const selectors = Object.keys(req.body);
+  let values = Object.values(req.body);
+
+  if (selectors.length > 0 || id) selectorString += "\tWHERE ";
+  selectors.forEach((filter, i) => {
+    console.log(i, selectors.length);
+    selectorString += `${filter}=$${i + 1}`;
+    if (i < selectors.length - 1) selectorString += "\tAND\t";
+  });
+
+  if (id) {
+    selectorString += `\to_id = $${selectors.length + 1}`;
+    values.push(id);
+  }
+
+  await pool.query(selectorString, values, (err) => {
     if (err) {
       res.json(err);
     } else {
-      res.json(id);
+      res.status(200).end();
     }
   });
 };
@@ -91,17 +114,22 @@ const ordersUpdate = async (req, res, pool) => {
 
   let selectorString = "UPDATE Order_Details SET";
   const selectors = Object.keys(req.body);
+  let values = Object.values(req.body);
+
+  if (selectors.length === 0 && !id)
+    res.json("Must pass at least pass a body");
 
   selectors.forEach((filter, i) => {
     selectorString += `\t${filter}=$${i + 1}`;
     if (i !== selectors.length - 1) selectorString += ",";
   });
 
-  if (id) selectorString += `\tWHERE o_id = ${id}`;
-
-  console.log(selectorString);
-
-  await pool.query(selectorString, Object.values(req.body), (err) => {
+  if (id) {
+    selectorString += `,\tWHERE o_id = $${selectors.length + 1}`;
+    values.push(id);
+  }
+  console.log(values);
+  await pool.query(selectorString, values, (err) => {
     if (err) {
       res.json(err);
     } else {
