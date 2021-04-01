@@ -10,10 +10,10 @@ console.log(pool);
   - JSON order Object
 */
 const ordersAdd = async (req, res, pool) => {
-  let insertString =
+  const queryString =
     "INSERT INTO Order_Details(order_date, status, comment, order_total, c_id) VALUES($1,$2,$3,$4,$5)";
 
-  await pool.query(insertString, Object.values(req.body), (err) => {
+  await pool.query(queryString, Object.values(req.body), (err) => {
     if (err) {
       res.json(err);
     } else {
@@ -32,35 +32,25 @@ const ordersAdd = async (req, res, pool) => {
 */
 
 const ordersGet = async (req, res, pool) => {
-  const { body } = req;
-  const { id } = req.params;
+  const { query } = req;
 
-  let selectorString = "SELECT * FROM Order_Details";
-  const selectors = Object.keys(body);
-  let values = Object.values(req.body);
+  let queryString = "SELECT * FROM Order_Details";
+  const selectors = Object.keys(query);
 
-  if (selectors.lenth > 0 || id) selectorString += "\tWHERE ";
+  if (selectors.length > 0) queryString += "\tWHERE\t ";
 
   selectors.forEach((filter, i) => {
-    selectorString += `${filter}=$${i + 1}`;
-    if (i < selectors.length - 1) selectorString += "\tAND ";
+    queryString += `${filter}=$${i + 1}`;
+    if (i < selectors.length - 1) queryString += "\tAND ";
   });
-  if (id) {
-    selectorString += `\t_id=$${selectors.length + 1}`;
-    values.push(id);
-  }
 
-  await pool.query(
-    selectorString,
-    Object.values(req.body),
-    (err, r) => {
-      if (err) {
-        res.json(err);
-      } else {
-        res.json(r.rows);
-      }
-    },
-  );
+  await pool.query(queryString, Object.values(query), (err, r) => {
+    if (err) {
+      res.json(err);
+    } else {
+      res.json(r.rows);
+    }
+  });
 };
 
 /*
@@ -74,24 +64,24 @@ const ordersGet = async (req, res, pool) => {
 
 const ordersRemove = async (req, res, pool) => {
   const { id } = req.params;
-  let selectorString = "DELETE FROM Order_Details";
+  let queryString = "DELETE FROM Order_Details";
 
   const selectors = Object.keys(req.body);
   let values = Object.values(req.body);
 
-  if (selectors.length > 0 || id) selectorString += "\tWHERE ";
+  if (selectors.length > 0 || id) queryString += "\tWHERE ";
   selectors.forEach((filter, i) => {
     console.log(i, selectors.length);
-    selectorString += `${filter}=$${i + 1}`;
-    if (i < selectors.length - 1) selectorString += "\tAND\t";
+    queryString += `${filter}=$${i + 1}`;
+    if (i < selectors.length - 1) queryString += "\tAND\t";
   });
 
   if (id) {
-    selectorString += `\to_id = $${selectors.length + 1}`;
+    queryString += `\to_id = $${selectors.length + 1}`;
     values.push(id);
   }
 
-  await pool.query(selectorString, values, (err) => {
+  await pool.query(queryString, values, (err) => {
     if (err) {
       res.json(err);
     } else {
@@ -112,7 +102,7 @@ const ordersRemove = async (req, res, pool) => {
 const ordersUpdate = async (req, res, pool) => {
   const { id } = req.params;
 
-  let selectorString = "UPDATE Order_Details SET";
+  let queryString = "UPDATE Order_Details SET";
   const selectors = Object.keys(req.body);
   let values = Object.values(req.body);
 
@@ -120,16 +110,16 @@ const ordersUpdate = async (req, res, pool) => {
     res.json("Must pass at least pass a body");
 
   selectors.forEach((filter, i) => {
-    selectorString += `\t${filter}=$${i + 1}`;
-    if (i !== selectors.length - 1) selectorString += ",";
+    queryString += `\t${filter}=$${i + 1}`;
+    if (i !== selectors.length - 1) queryString += ",";
   });
 
   if (id) {
-    selectorString += `,\tWHERE o_id = $${selectors.length + 1}`;
+    queryString += `,\tWHERE o_id = $${selectors.length + 1}`;
     values.push(id);
   }
   console.log(values);
-  await pool.query(selectorString, values, (err) => {
+  await pool.query(queryString, values, (err) => {
     if (err) {
       res.json(err);
     } else {

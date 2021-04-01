@@ -29,7 +29,7 @@ const orderRoutes = (pool) => {
   - Array of JSON objects (orders)
 */
 
-  router.post("/get/:id?", (req, res) => ordersGet(req, res, pool));
+  router.get("/get", (req, res) => ordersGet(req, res, pool));
 
   /*
 @TYPE:
