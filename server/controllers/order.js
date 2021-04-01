@@ -111,7 +111,7 @@ const ordersUpdate = async (req, res, pool) => {
 
   selectors.forEach((filter, i) => {
     queryString += `\t${filter}=$${i + 1}`;
-    if (i !== selectors.length - 1) queryString += ",";
+    if (i < selectors.length - 1) queryString += ",";
   });
 
   if (id) {
