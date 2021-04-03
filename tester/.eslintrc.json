@@ -5,13 +5,10 @@
     "es2021": true,
     "node": true
   },
-  "extends": ["prettier", "eslint:recommended"],
-  "plugins": ["prettier"],
+  "extends": ["airbnb-base"],
   "parserOptions": {
     "ecmaVersion": 12
   },
-
-  "rules": {
-    "prettier/prettier": ["error"]
-  }
+  "ignorePatterns": ["__tests__/*.js"],
+  "rules": {}
 }

@@ -1,6 +1,3 @@
-const pool = require("../index");
-console.log(pool);
-
 /*
 @TYPE:
   PUBLIC
