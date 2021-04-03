@@ -2,7 +2,7 @@ const get_api_url =
       "https://my.api.mockaroo.com/rum2_go_customer.json?key=535f7d80"; 
 
 
-async function getapi(url) { 
+export default async function getapi(url) { 
     
     // Store response 
     const response = await fetch(url); 
@@ -11,7 +11,6 @@ async function getapi(url) {
     var data = await response.json(); 
 
     //Do something with data
-    console.log(data); 
+    return data; 
 } 
 
-getapi(get_api_url);

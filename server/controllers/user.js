@@ -9,6 +9,21 @@ const handleErrors = (err) => {
   }
 };
 
+const get_api_url =  
+      "https://my.api.mockaroo.com/rum2_go_customer.json?key=535f7d80"; 
+
+
+async function getapi(url) { 
+    // Store response 
+    const response = await fetch(url); 
+    
+    // Store data in form of JSON 
+    var data = await response.json(); 
+
+    //Do something with data
+    return data; 
+}
+
 const signupPost = async (req, res, next, pool) => {
   const { name, password, email } = req.body;
   console.log("here");
@@ -23,4 +38,11 @@ const signupPost = async (req, res, next, pool) => {
   );
 };
 
-module.exports = { signupPost };
+const mockSignupPost = async (req, res, next, pool) => {
+  data = await getapi(get_api_url);
+  data.foreach(user =>{
+    signupPost(data, res, next, pool);
+  })
+}
+
+module.exports = { signupPost, mockSignupPost };

@@ -1,6 +1,6 @@
 // ES5
 const { Router } = require("express");
-const { signupPost } = require("../controllers/user");
+const { signupPost, mockSignupPost } = require("../controllers/user");
 const passport = require("passport");
 var router = Router();
 
@@ -20,6 +20,14 @@ const userRoutes = (pool) => {
       res.redirect("/");
     },
   );
+  router.post(
+    "/mockSignUp",
+    (req, res, next) => mockSignupPost(req, res, next, pool),
+    passport.authenticate("local"),
+    function (req, res) {
+      res.redirect("/");
+    },
+  )
   return router;
 };
 
