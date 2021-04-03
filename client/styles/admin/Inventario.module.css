@@ -1,0 +1,17 @@
+.container {
+    padding: 16px;
+}
+
+.foodgrid {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    max-width: 1000px;
+}
+
+.buttons button{
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
