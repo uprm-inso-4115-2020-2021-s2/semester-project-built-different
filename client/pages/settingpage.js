@@ -11,12 +11,12 @@ export default function Setting() {
     <div className={styles.container}>
       <Head>
         <title>RUM2GO</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/rum2go.ico" />
       </Head>
       <Navbar />
       <main className={styles.main}>
         <div className={styles.jumbotron}>
-          <h1>Setting</h1>
+          <h1>Ajustes</h1>
         </div>
       </main>
       <footer className={styles.footer}>

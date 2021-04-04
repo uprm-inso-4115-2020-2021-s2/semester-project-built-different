@@ -14,8 +14,8 @@ export default function Login() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>RUM2GO: Acceso</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>RUM2GO</title>
+        <link rel="icon" href="/rum2go.ico" />
       </Head>
       <Navbar />
       <main className={styles.main}>

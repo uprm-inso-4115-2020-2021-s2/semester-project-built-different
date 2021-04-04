@@ -7,6 +7,11 @@ export default function Navbar() {
   const router = useRouter();
 
   return (
+    <>
+    <Head>
+      <title>RUM2GO</title>
+      <link rel="icon" href="/rum2go.ico" />
+    </Head>
     <div className={styles.navbar}>
       <h2>RUM2GO</h2>
       <div
@@ -58,5 +63,6 @@ export default function Navbar() {
         </div>
       ) : null}
     </div>
+    </>
   );
 }

@@ -42,18 +42,18 @@ export default function Navbar() {
           <span
             tabIndex="0"
             role="button"
-            onKeyDown={() => router.push('/settingpage')}
-            onClick={() => router.push('/settingpage')}
-          >
-            Ajustes
-          </span>
-          <span
-            tabIndex="0"
-            role="button"
             onKeyDown={() => router.push('/login')}
             onClick={() => router.push('/login')}
           >
             Iniciar sesión
+          </span>
+          <span
+            tabIndex="0"
+            role="button"
+            onKeyDown={() => router.push('/settingpage')}
+            onClick={() => router.push('/settingpage')}
+          >
+            Ajustes
           </span>
         </div>
       ) : null}

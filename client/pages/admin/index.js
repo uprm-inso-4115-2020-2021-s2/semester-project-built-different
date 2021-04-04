@@ -8,6 +8,10 @@ export default function Home() {
     const router = useRouter();
     return (
         <>
+            <Head>
+                <title>RUM2GO</title>
+                <link rel="icon" href="/rum2go.ico" />
+            </Head>
             <Navbar />
             <div className={styles.container}>
                 <h2>Bienvenido, Usuario</h2>

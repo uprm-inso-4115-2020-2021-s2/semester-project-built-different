@@ -11,12 +11,12 @@ export default function Checkout() {
     <div className={styles.container}>
       <Head>
         <title>RUM2GO</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/rum2go.ico" />
       </Head>
       <Navbar />
       <main className={styles.main}>
         <div className={styles.jumbotron}>
-          <h1>Checkout</h1>
+          <h1>Tu Orden</h1>
         </div>
       </main>
       <footer className={styles.footer}>

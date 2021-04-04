@@ -3,13 +3,15 @@ import Head from 'next/head';
 import { Button } from 'react-bootstrap';
 import styles from '../styles/Home.module.css';
 import Navbar from '../components/Navbar';
+import { useRouter } from 'next/router';
 
 export default function Home() {
+  const router = useRouter();
   return (
     <div className={styles.container}>
       <Head>
         <title>RUM2GO</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/rum2go.ico" />
       </Head>
       <Navbar />
       <main className={styles.main}>
@@ -45,7 +47,7 @@ export default function Home() {
           <div className={styles.register_box_content}>
             <h2>No vuelvas a hacer otra fila mas!</h2>
             <p>Crea tu cuenta y ordena ya</p>
-            <Button>Registrate</Button>
+            <Button onClick={() => router.push('/signup')}>Registrate</Button>
           </div>
           <img src="/tipo_paquete.png" alt="paquete" />
         </div>

@@ -18,8 +18,8 @@ export default function Inventario() {
     return (
         <>
             <Head>
-                <title>RUM2GO - Inventario</title>
-                <link rel="icon" href="/favicon.ico" />
+                <title>RUM2GO</title>
+                <link rel="icon" href="/rum2go.ico" />
             </Head>
             <Navbar />
             <div className={styles.container}>

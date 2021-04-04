@@ -14,8 +14,8 @@ export default function SignUp() {
     return (
       <div className={styles.container}>
         <Head>
-          <title>RUM2GO: Sign up</title>
-          <link rel="icon" href="/favicon.ico" />
+          <title>RUM2GO</title>
+          <link rel="icon" href="/rum2go.ico" />
         </Head>
         <Navbar />
         <main className={styles.main}>

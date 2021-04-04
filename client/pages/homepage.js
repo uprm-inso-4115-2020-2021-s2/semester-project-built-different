@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import Navbar from '../components/Navbar';
 import styles from '../styles/Home.module.css';
 import { Button, Card, Form } from 'react-bootstrap';
 import { useRouter } from 'next/router';
@@ -21,8 +20,8 @@ export default function HomePage() {
     return (
         <div className={styles.container}>
             <Head>
-                <title>RUM2GO - Home Page</title>
-                <link rel="icon" href="/favicon.ico" />
+                <title>RUM2GO</title>
+                <link rel="icon" href="/rum2go.ico" />
             </Head>
             <hr/>
             <main className={styles.main}>
@@ -46,7 +45,7 @@ export default function HomePage() {
                                     <div className={styles.buttons}>
                                         <Button variant="warning">Anadir a la orden</Button>
                                         <Button variant="danger">Eliminar de la orden</Button>
-                                        <Button variant="success" onClick={() => router.push('/checkout')}>Procesar orden</Button>
+                                        <Button variant="success" onClick={() => router.push('/checkoutpage')}>Procesar orden</Button>
                                     </div>
                                 </Card.Body>
                             </Card>
