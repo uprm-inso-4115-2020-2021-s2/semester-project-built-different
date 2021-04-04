@@ -57,7 +57,23 @@ CREATE TABLE Station
   s_id SERIAL NOT NULL,
   description VARCHAR(150) NOT NULL,
   PRIMARY KEY (s_id)
-);
+)
+
+CREATE TABLE Categories
+(
+  cat_id SERIAL NOT NULL,
+  name VARCHAR(25) NOT NULL,
+  PRIMARY KEY (cat_id)
+)
+
+CREATE TABLE Categories_Products
+(
+  cat_id INT NOT NULL,
+  pd_id INT NOT NULL,
+  PRIMARY KEY (cat_id, pd_id),
+  FOREIGN KEY (cat_id) REFERENCES Categories(cat_id),
+  FOREIGN KEY (pd_id) REFERENCES Products(pd_id)
+)
 
 CREATE TABLE Order_Products
 (
