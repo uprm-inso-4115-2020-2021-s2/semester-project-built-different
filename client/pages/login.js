@@ -4,15 +4,17 @@ import Link from 'next/link';
 import { Button, Form } from 'react-bootstrap';
 import styles from '../styles/Login.module.css';
 import Navbar from '../components/Navbar';
+import { useRouter } from 'next/router';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const router = useRouter();
 
   return (
     <div className={styles.container}>
       <Head>
-        <title>RUM2GO: Login</title>
+        <title>RUM2GO: Acceso</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar />
@@ -20,23 +22,23 @@ export default function Login() {
         <Form>
           <h2>Iniciar sesión</h2>
           <Form.Group controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
+            <Form.Label>Correo Electronico</Form.Label>
             <Form.Control
               type="email"
-              placeholder="Enter email"
+              placeholder="Escribe tu correo"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
             />
             <Form.Text className="text-muted">
-              We&apposll never share your email with anyone else.
+              Nunca compartimos tu informacion con nadie
             </Form.Text>
           </Form.Group>
 
           <Form.Group controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
+            <Form.Label>Contrasena</Form.Label>
             <Form.Control
               type="password"
-              placeholder="Password"
+              placeholder="Contrasena"
               value={password}
               onChange={(event) => setPassword(event.target.value)}
             />
@@ -46,9 +48,7 @@ export default function Login() {
           </Form.Group>
           <Link href="/signup">Crear cuenta</Link>
           <br />
-          <Button variant="primary" type="submit">
-            Entrar
-          </Button>
+          <Button onClick={() => router.push('/homepage')}>Entrar</Button>
         </Form>
       </main>
 

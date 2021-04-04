@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import Head from 'next/head';
 import styles from '../styles/SignUp.module.css';
 import Navbar from '../components/Navbar';
-
+import { useRouter } from 'next/router';
 import { Button, Form } from 'react-bootstrap';
-
 
 export default function SignUp() {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const router = useRouter();
 
     return (
       <div className={styles.container}>
@@ -31,27 +31,24 @@ export default function SignUp() {
                 />
               </Form.Group>
               <Form.Group controlId="formBasicEmail">
-                <Form.Label>Email address</Form.Label>
+                <Form.Label>Correo Electronico</Form.Label>
                 <Form.Control 
                     type="email" 
-                    placeholder="Enter email" 
+                    placeholder="Escribe tu correo" 
                     value={email}
                     onChange={(event) => setEmail(event.target.value)}
                 />
               </Form.Group>
-
               <Form.Group controlId="formBasicPassword">
-                <Form.Label>Password</Form.Label>
+                <Form.Label>Contrasena</Form.Label>
                 <Form.Control 
                     type="password" 
-                    placeholder="Password" 
+                    placeholder="Contrasena" 
                     value={password}
                     onChange={(event) => setPassword(event.target.value)}
                 />
               </Form.Group>
-              <Button variant="primary" type="submit">
-                Entrar
-              </Button>
+              <Button onClick={() => router.push('/homepage')}>Registrarse</Button>
           </Form>
         </main>
 

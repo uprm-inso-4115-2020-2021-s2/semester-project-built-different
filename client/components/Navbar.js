@@ -39,7 +39,14 @@ export default function Navbar() {
           >
             Inicio
           </span>
-          <span>Favoritos</span>
+          <span
+            tabIndex="0"
+            role="button"
+            onKeyDown={() => router.push('/settingpage')}
+            onClick={() => router.push('/settingpage')}
+          >
+            Ajustes
+          </span>
           <span
             tabIndex="0"
             role="button"

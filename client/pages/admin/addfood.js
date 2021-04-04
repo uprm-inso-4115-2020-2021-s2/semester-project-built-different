@@ -1,57 +1,62 @@
-import React from 'react';
-import Navbar from '../../components/Navbar';
-import styles from '../../styles/admin/AddFood.module.css';
-import { Button, Form } from 'react-bootstrap';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import Head from 'next/head';
+import styles from '../styles/Navbar.module.css';
 
-export default function AddFood() {
-    const router = useRouter();
-    return (
-        <>
-            <Head>
-                <title>RUM2GO - Añadir comida</title>
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
-            <Navbar />
-            <div className={styles.container}>
-                <h2>Bienvenido, Usuario</h2>
-                <p>Acciones: Añadir comida</p>
-                <Button onClick={() => router.back()}>Volver</Button>
-                <hr/>
-                <div className={styles.form}>
-                    <Form>
-                      <Form.Group controlId="exampleForm.ControlInput1">
-                        <Form.Label>Nombre</Form.Label>
-                        <Form.Control type="email" placeholder="Comida" />
-                      </Form.Group>
-                      <Form.Group controlId="exampleForm.ControlInput1">
-                        <Form.Label>Precio ($)</Form.Label>
-                        <Form.Control type="number" placeholder="$0.00" />
-                      </Form.Group>
-                      
-                      <Form.Group controlId="exampleForm.ControlTextarea1">
-                        <Form.Label>Descripción</Form.Label>
-                        <Form.Control as="textarea" rows={3} />
-                      </Form.Group>
-                      <Form.Group controlId="exampleForm.ControlInput1">
-                        <Form.Label>Cantidad</Form.Label>
-                        <Form.Control type="number" placeholder="0" />
-                      </Form.Group>
-                      <Form.Group controlId="exampleForm.ControlSelect1">
-                        <Form.Label>Categoria</Form.Label>
-                        <Form.Control as="select">
-                          <option>Criollo</option>
-                          <option>Italian</option>
-                          <option>American</option>
-                          <option>Soup</option>
-                          <option>Chinese</option>
-                        </Form.Control>
-                      </Form.Group>
-                      <Button variant="success">Añadir comida</Button>
-                    </Form>
-                </div>
-            </div>
-        </>
-    )
+export default function Navbar() {
+  const [showMenu, setShowMenu] = useState(false);
+  const router = useRouter();
+
+  return (
+    <div className={styles.navbar}>
+      <h2>RUM2GO</h2>
+      <div
+        tabIndex="0"
+        role="button"
+        onKeyDown={() => setShowMenu(true)}
+        className={styles.menu_icon}
+        onClick={() => setShowMenu(true)}
+      >
+        <div className={styles.menu_line} />
+        <div className={styles.menu_line} />
+        <div className={styles.menu_line} />
+      </div>
+      {showMenu ? (
+        <div className={styles.navbar_items}>
+          <span
+            tabIndex="0"
+            role="button"
+            onKeyDown={() => setShowMenu(false)}
+            className={styles.cerrar}
+            onClick={() => setShowMenu(false)}
+          >
+            <strong>Cerrar</strong>
+          </span>
+          <span
+            tabIndex="0"
+            role="button"
+            onKeyDown={() => router.push('/')}
+            onClick={() => router.push('/')}
+          >
+            Inicio
+          </span>
+          <span
+            tabIndex="0"
+            role="button"
+            onKeyDown={() => router.push('/settingpage')}
+            onClick={() => router.push('/settingpage')}
+          >
+            Ajustes
+          </span>
+          <span
+            tabIndex="0"
+            role="button"
+            onKeyDown={() => router.push('/login')}
+            onClick={() => router.push('/login')}
+          >
+            Iniciar sesión
+          </span>
+        </div>
+      ) : null}
+    </div>
+  );
 }
