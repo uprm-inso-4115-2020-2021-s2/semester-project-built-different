@@ -15,6 +15,16 @@
   align-items: center;
 } */
 
+.foodgrid {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  max-width: 1000px;
+  align-items: center;
+  margin-top: 500;
+}
+
 .jumbotron {
   background-image: url('../public/cafeteria.jpg');
   /* width: 900px; */
@@ -87,7 +97,6 @@
   justify-content: center;
   align-items: center;
 }
-
 
 .code {
   background: #fafafa;
@@ -190,5 +199,3 @@
     padding: 1rem;
   }
 }
-
-
