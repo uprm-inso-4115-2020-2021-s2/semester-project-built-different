@@ -18,33 +18,30 @@ export default function settings(){
                 <div className={styles.profileEdit}>
                     <h2>Bienvenido!</h2>
                     <Image src="/userpic.png" height={211} width={210}/>
-                    <Image class="imgChange" src="/cameraIcon.png" height={54} width={52}/>
+                    <Image src="/cameraIcon.png" height={54} width={52}/>
                     <h3>Marko Schutz</h3>
                     {/* <h3>{user.name}</h3> */}
                 </div>
-
                 <hr/>
-                {/* <div className={styles.settingsRectangle}>
-                <div className={styles.settingsgrid}>
-                    <Card>
-                        <Card.Body>
-                            <Card.Title>Edite su perfíl</Card.Title>
-                        </Card.Body> 
-                        <Card.Body>
-                            <Card.Title>Historial de ordenes</Card.Title>
-                        </Card.Body> 
-                        <Card.Body>
-                            <Card.Title>Manejo de cuenta</Card.Title>
-                        </Card.Body> 
-                        <Card.Body>
-                            <Card.Title>Ayuda y soporte</Card.Title>
-                        </Card.Body> 
-                        <Card.Body>
-                            <Card.Title>Cambiar método de pago</Card.Title>
-                        </Card.Body> 
-                    </Card>            
-                </div>
-                </div> */}
+                {/* <div className={styles.settingsRectangle}> */}
+                <ul className={styles.settingsgrid}>
+                        <Image src="/userpic.png" height={99} width={98}/>
+                            <li><a href="#">Edite su perfíl </a></li>
+
+                        <Image src="/moneyIcon.png" height={101} width={98}/>
+                        <li><a href="#">Historial de Ordenes </a></li>
+
+                        <Image src="/gear.png" height={108} width={98}/>
+                        <li><a href="#">Manejo de Cuenta </a></li>
+ 
+                        <Image src="/questionmark.png" height={106} width={98}/>
+                        <li><a href="#">Ayuda  </a></li>
+                     
+                        <Image src="/payment.png" height={107} width={98}/>
+                        <li><a href="#">Cambiar Método de Pago </a></li>
+                                    
+                </ul>
+                {/* </div> */}
                 {/* <footer className={styles.footer}>
           <h5>RUM2GO</h5>
         </footer> */}

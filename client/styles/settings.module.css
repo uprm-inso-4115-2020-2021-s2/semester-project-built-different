@@ -47,93 +47,40 @@
   background-image: url(../../client/public/coffebeans.png);
 }
 
-.userImg{
-  position: absolute;
-width: 210px;
-height: 211px;
-left: 204px;
-top: 300px;
-
-background: url(../../client/public/userpic.png);
-mix-blend-mode: normal;
-filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-border-radius: 100px;
-}
-.imgChange{
-  position: absolute;
-width: 52px;
-height: 54px;
-left: 362px;
-top: 457px;
-
-mix-blend-mode: normal;
-border-radius: 300px;
-}
-
-.userName {
-  position: absolute;
-  width: 389px;
-  height: 46px;
-  left: 114px;
-  top: 553px;
-  
-  font-family: PT Sans;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 48px;
-  line-height: 62px;
-  text-align: center;
-  
-  color: #F6F6F6;
-}
-
-/* .jumbotron h2 {
-  position: absolute;
-width: 251px;
-height: 46px;
-left: 183px;
-top: 218px;
-
-font-family: PT Sans;
-font-style: normal;
-font-weight: bold;
-font-size: 48px;
-line-height: 62px;
-text-align: center;
-
-color: #F6F6F6;
-} */
-
-/* 
 .settingsgrid {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  max-width: 800px;
+  list-style: none;
+  margin: 0; 
+
   position: relative;
-  width: 213px;
-  height: 59px;
-  left: 854px;
-  top: 185px;
+  width: 795px;
+  height: 975px;
+  left: 580px;
+  top: -978px;
   
   font-family: PT Sans;
   font-style: normal;
   font-weight: normal;
   font-size: 36px;
   line-height: 47px;
-  text-align: center;
   
   color: #000000;
+
+  background: #F6F6F6;
+  mix-blend-mode: normal;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+}
+.settingsgrid a{
+  color: #000000;
+
 }
 
-.settingsRectangle{
-  position: absolute;
-width: 795px;
-height: 975px;
-left: 664px;
-top: 50px;
-
-background: #F6F6F6;
-mix-blend-mode: normal;
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-border-radius: 20px;
-} */
 
 
 
