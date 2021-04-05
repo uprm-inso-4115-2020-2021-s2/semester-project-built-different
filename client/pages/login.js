@@ -48,7 +48,7 @@ export default function Login() {
           </Form.Group>
           <Link href="/signup">Crear cuenta</Link>
           <br />
-          <Button onClick={() => router.push('/homepage')}>Entrar</Button>
+          <Button onClick={() => router.push('/menu')}>Entrar</Button>
         </Form>
       </main>
 

@@ -50,8 +50,8 @@ export default function Navbar() {
           <span
             tabIndex="0"
             role="button"
-            onKeyDown={() => router.push('/settingpage')}
-            onClick={() => router.push('/settingpage')}
+            onKeyDown={() => router.push('/setting')}
+            onClick={() => router.push('/setting')}
           >
             Ajustes
           </span>

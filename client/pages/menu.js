@@ -45,7 +45,7 @@ export default function HomePage() {
                                     <div className={styles.buttons}>
                                         <Button variant="warning">Anadir a la orden</Button>
                                         <Button variant="danger">Eliminar de la orden</Button>
-                                        <Button variant="success" onClick={() => router.push('/checkoutpage')}>Procesar orden</Button>
+                                        <Button variant="success" onClick={() => router.push('/checkout')}>Procesar orden</Button>
                                     </div>
                                 </Card.Body>
                             </Card>

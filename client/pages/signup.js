@@ -48,7 +48,7 @@ export default function SignUp() {
                     onChange={(event) => setPassword(event.target.value)}
                 />
               </Form.Group>
-              <Button onClick={() => router.push('/homepage')}>Registrarse</Button>
+              <Button onClick={() => router.push('/menu')}>Registrarse</Button>
           </Form>
         </main>
 
