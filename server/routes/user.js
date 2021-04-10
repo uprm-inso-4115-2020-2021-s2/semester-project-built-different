@@ -21,7 +21,7 @@ const userRoutes = (pool) => {
     },
   );
   router.post(
-    "/mockSignUp",
+    "/mocksignup",
     (req, res, next) => mockSignupPost(req, res, next, pool),
     passport.authenticate("local"),
     function (req, res) {
