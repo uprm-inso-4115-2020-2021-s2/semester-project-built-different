@@ -1,3 +1,13 @@
+CREATE TABLE Meal
+(
+  m_id SERIAL NOT NULL,
+  name VARCHAR(150) NOT NULL,
+  price INT NOT NULL,
+  comments VARCHAR(250) NOT NULL,
+  available BOOLEAN NOT NULL,
+  (m_id) PRIMARY KEY
+)
+
 CREATE TABLE Customer
 (
   c_id SERIAL NOT NULL,

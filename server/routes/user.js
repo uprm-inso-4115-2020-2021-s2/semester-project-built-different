@@ -13,6 +13,7 @@ const userRoutes = (pool) => {
       res.json(req.user);
     },
   );
+
   router.post(
     "/login",
     passport.authenticate("local"),
