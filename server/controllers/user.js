@@ -29,11 +29,8 @@ const signupPost = async (req, res, next, pool) => {
 };
 
 const authGet = async (req, res) => {
-  if (req.isAuthenticated()) {
-    res.json(req.user);
-  } else {
-    res.json(null);
-  }
+  console.log(req.isAuthenticated());
+  res.end();
 };
 
 module.exports = { signupPost, authGet };

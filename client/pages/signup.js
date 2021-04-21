@@ -1,34 +1,35 @@
 import React, { useState } from 'react';
 import Head from 'next/head';
 import { Button, Form } from 'react-bootstrap';
-import axios from 'axios';
 import { useRouter } from 'next/router';
+import { useDispatch, useSelector } from 'react-redux';
+import { authActions } from '../store/actions';
+import { authSelectors } from '../store/selectors';
 import styles from '../styles/SignUp.module.css';
 import Navbar from '../components/Navbar';
 
 export default function SignUp() {
+  const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const token = useSelector(authSelectors.selectToken);
+  const error = useSelector(authSelectors.selectError);
   const router = useRouter();
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const res = await axios.post(
-      'http://localhost:5000/api/users/signup',
-      {
-        email,
-        password,
-        name,
-      },
-    );
+  const handleSubmit = React.useCallback(
+    async (e) => {
+      e.preventDefault();
 
-    if (res.data.error) {
-      // error handling here
-    } else {
-      router.push('/');
-    }
-  };
+      await dispatch(
+        authActions.initSession({ name, email, password }, 'signup'),
+      );
+    },
+    [dispatch, email, name, password],
+  );
+
+  React.useEffect(() => {
+    if (token) router.push('/');
+  }, [router, token]);
 
   return (
     <div className={styles.container}>
@@ -67,6 +68,8 @@ export default function SignUp() {
               value={password}
               onChange={(event) => setPassword(event.target.value)}
             />
+
+            <p>{error || ''}</p>
           </Form.Group>
 
           <Button variant="primary" type="submit">

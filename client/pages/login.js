@@ -2,32 +2,36 @@ import React, { useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { Button, Form } from 'react-bootstrap';
-import axios from 'axios';
 import { useRouter } from 'next/router';
+import { useSelector, useDispatch } from 'react-redux';
 import styles from '../styles/Login.module.css';
 import Navbar from '../components/Navbar';
+import { authActions } from '../store/actions';
+import { authSelectors } from '../store/selectors';
 
 export default function Login() {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const res = await axios.post(
-      'http://localhost:5000/api/users/login',
-      {
-        email,
-        password,
-      },
-    );
+  const token = useSelector(authSelectors.selectToken);
+  const error = useSelector(authSelectors.selectError);
 
-    if (res.data.error) {
-      // error handling here
-    } else {
-      router.push('/');
-    }
-  };
+  const handleSubmit = React.useCallback(
+    async (e) => {
+      e.preventDefault();
+
+      await dispatch(
+        authActions.initSession({ email, password }, 'login'),
+      );
+    },
+    [dispatch, email, password],
+  );
+
+  React.useEffect(() => {
+    if (token) router.push('/');
+  }, [token, router]);
 
   return (
     <div className={styles.container}>
@@ -63,6 +67,7 @@ export default function Login() {
           </Form.Group>
           <Form.Group controlId="formBasicCheckbox">
             <Form.Check type="checkbox" label="Recuerdame" />
+            <p>{error || ''}</p>
           </Form.Group>
           <Link href="/signup">Crear cuenta</Link>
           <br />

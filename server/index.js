@@ -25,16 +25,14 @@ app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
 app.use(cookieParser());
 app.use(cors());
-app.use(passport.initialize());
-app.use(passport.session());
 app.use(flash());
 app.use(
   session({
     secret: "built-different",
-    resave: false,
-    saveUninitialized: true,
   }),
 );
+app.use(passport.initialize());
+app.use(passport.session());
 
 // init DB
 
