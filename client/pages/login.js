@@ -2,12 +2,32 @@ import React, { useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { Button, Form } from 'react-bootstrap';
+import axios from 'axios';
+import { useRouter } from 'next/router';
 import styles from '../styles/Login.module.css';
 import Navbar from '../components/Navbar';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const router = useRouter();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const res = await axios.post(
+      'http://localhost:5000/api/users/login',
+      {
+        email,
+        password,
+      },
+    );
+
+    if (res.data.error) {
+      // error handling here
+    } else {
+      router.push('/');
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -17,7 +37,7 @@ export default function Login() {
       </Head>
       <Navbar />
       <main className={styles.main}>
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <h2>Iniciar sesión</h2>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
@@ -46,6 +66,7 @@ export default function Login() {
           </Form.Group>
           <Link href="/signup">Crear cuenta</Link>
           <br />
+
           <Button variant="primary" type="submit">
             Entrar
           </Button>

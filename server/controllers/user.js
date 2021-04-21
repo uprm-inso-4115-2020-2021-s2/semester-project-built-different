@@ -1,17 +1,22 @@
 const bcrypt = require("bcrypt");
 
 const handleErrors = (err) => {
+  let error = "";
   switch (err.code) {
     case "23505":
-      return "Username already exists!";
+      error = "Username already exists!";
+      break;
     default:
-      return "Failed, try again later!";
+      error = "Failed, try again later!";
+      break;
   }
+
+  return { error };
 };
 
 const signupPost = async (req, res, next, pool) => {
   const { name, password, email } = req.body;
-  console.log("here");
+
   const hashedPassword = await bcrypt.hash(password, 10);
   pool.query(
     "INSERT INTO Customer(name,password,email) VALUES ($1,$2,$3)",
@@ -23,4 +28,12 @@ const signupPost = async (req, res, next, pool) => {
   );
 };
 
-module.exports = { signupPost };
+const authGet = async (req, res) => {
+  if (req.isAuthenticated()) {
+    res.json(req.user);
+  } else {
+    res.json(null);
+  }
+};
+
+module.exports = { signupPost, authGet };

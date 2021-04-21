@@ -1,6 +1,7 @@
 // ES5 Syntax
 const express = require("express");
 const userRoutes = require("./routes/user");
+const testRoutes = require("./routes/test");
 //Uncomment when routes are ready
 const orderRoutes = require("./routes/order");
 const useLocalStrategy = require("./strategies/local");
@@ -32,7 +33,6 @@ app.use(
     secret: "built-different",
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: true },
   }),
 );
 
@@ -46,6 +46,8 @@ useLocalStrategy(passport, pool);
 app.use("/api/users", userRoutes(pool));
 
 app.use("/api/orders", orderRoutes(pool));
+
+app.use("/test/users", testRoutes(pool));
 
 // home page placeholder
 app.use("/", (req, res) => res.send("Server running..."));
