@@ -1,5 +1,5 @@
 const bcrypt = require("bcrypt");
-const axios = require("axios");
+const getapi = require("../services/mockData");
 
 const handleErrors = (err) => {
   let error = "";
@@ -15,21 +15,8 @@ const handleErrors = (err) => {
   return { error };
 };
 
-const get_api_url =
-  "https://my.api.mockaroo.com/rum2_go_customer.json?key=535f7d80";
-
-async function getapi(url) {
-  // Store response
-  const response = await axios.get(url);
-
-  // Store data in form of JSON
-
-  //Do something with data
-  return response.data;
-}
-
 const mockSignupPost = async (req, res, pool) => {
-  const data = await getapi(get_api_url);
+  const data = await getapi();
   for (const user of data) {
     console.log(user);
     const { name, password, email } = user;
