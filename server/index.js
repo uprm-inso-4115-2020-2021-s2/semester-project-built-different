@@ -33,7 +33,6 @@ app.use(
     secret: "built-different",
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: true },
   }),
 );
 

@@ -2,12 +2,17 @@ const bcrypt = require("bcrypt");
 const axios = require("axios");
 
 const handleErrors = (err) => {
+  let error = "";
   switch (err.code) {
     case "23505":
-      return "Username already exists!";
+      error = "Order already exists!";
+      break;
     default:
-      return "Failed, try again later!";
+      error = "Failed, try again later!";
+      break;
   }
+
+  return { error };
 };
 
 const get_api_url =
