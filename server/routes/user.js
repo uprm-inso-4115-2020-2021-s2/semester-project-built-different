@@ -8,13 +8,14 @@ const userRoutes = (pool) => {
   router.post(
     "/signup",
     (req, res, next) => signupPost(req, res, next, pool),
+    passport.authenticate("local"),
     (req, res) => {
       res.json(req.user);
     },
   );
   router.post(
     "/login",
-    passport.authenticate("local"),
+
     (req, res) => {
       res.json(req.user);
     },
