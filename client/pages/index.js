@@ -3,8 +3,11 @@ import Head from 'next/head';
 import { Button } from 'react-bootstrap';
 import styles from '../styles/Home.module.css';
 import Navbar from '../components/Navbar';
+import { useRouter } from 'next/router';
 
 export default function Home() {
+  const router = useRouter();
+  
   return (
     <div className={styles.container}>
       <Head>
@@ -19,9 +22,9 @@ export default function Home() {
         <div className={styles.info_box}>
           <h2>La cafeteria del RUM en un click.</h2>
           <p>
-            Ya no tendras que hacer mas filas cuando vuelvan las
+            Ya no tendrás que hacer más filas cuando vuelvan las
             clases. Con RUM2GO, puedes ordenar y pagar tu comida desde
-            tu telefono. Solo tienes que pasar a recogerla cuando
+            tu teléfono. Solo tienes que pasar a recogerla cuando
             recibas la alerta.
           </p>
         </div>
@@ -45,7 +48,7 @@ export default function Home() {
           <div className={styles.register_box_content}>
             <h2>No vuelvas a hacer otra fila mas!</h2>
             <p>Crea tu cuenta y ordena ya</p>
-            <Button>Registrate</Button>
+            <Button onClick={() => router.push('/signup')}>Registrate</Button>
           </div>
           <img src="/tipo_paquete.png" alt="paquete" />
         </div>

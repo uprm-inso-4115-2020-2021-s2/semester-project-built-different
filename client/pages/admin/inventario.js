@@ -39,8 +39,8 @@ export default function Inventario() {
                                     <Button variant="warning">Editar comida</Button>
                                     <Button variant="danger">Borrar comida</Button>
                                 </div>
-                                
-                        </Card.Body>
+                      
+                            </Card.Body>
                       </Card>
                     ))}
                 </div>
