@@ -7,16 +7,21 @@
   - JSON order Object
 */
 const ordersAdd = async (req, res, pool) => {
+  const { timestamp, status, comment, total, cid } = req.body;
   const queryString =
-    "INSERT INTO Order_Details(order_date, status, comment, order_total, c_id) VALUES($1,$2,$3,$4,$5)";
+    "INSERT INTO Order_Details(timestamp, status, comment, total, cid) VALUES($1,$2,$3,$4,$5)";
 
-  await pool.query(queryString, Object.values(req.body), (err) => {
-    if (err) {
-      res.json(err);
-    } else {
-      res.json(req.body);
-    }
-  });
+  await pool.query(
+    queryString,
+    [timestamp, status, comment, total, cid],
+    (err) => {
+      if (err) {
+        res.json(err);
+      } else {
+        res.json(req.body);
+      }
+    },
+  );
 };
 /*
 @TYPE:
@@ -74,7 +79,7 @@ const ordersRemove = async (req, res, pool) => {
   });
 
   if (id) {
-    queryString += `\to_id = $${selectors.length + 1}`;
+    queryString += `\toid = $${selectors.length + 1}`;
     values.push(id);
   }
 
@@ -112,7 +117,7 @@ const ordersUpdate = async (req, res, pool) => {
   });
 
   if (id) {
-    queryString += `,\tWHERE o_id = $${selectors.length + 1}`;
+    queryString += `,\tWHERE oid = $${selectors.length + 1}`;
     values.push(id);
   }
   console.log(values);

@@ -5,6 +5,7 @@ const testRoutes = require("./routes/test");
 //Uncomment when routes are ready
 const orderRoutes = require("./routes/order");
 const mealRoutes = require("./routes/meal");
+const stationRoutes = require("./routes/station");
 const useLocalStrategy = require("./strategies/local");
 const bodyparser = require("body-parser");
 const cookieParser = require("cookie-parser");
@@ -50,6 +51,8 @@ const init = async () => {
   app.use("/test/users", testRoutes(pool));
 
   app.use("/api/meals", mealRoutes(pool));
+
+  app.use("/api/station", stationRoutes(pool));
 
   // home page placeholder
   app.use("/", (req, res) => res.send("Server running..."));

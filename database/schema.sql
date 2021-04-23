@@ -52,7 +52,7 @@ CREATE TABLE Order_Details
   timestamp DATE NOT NULL,
   status VARCHAR NOT NULL,
   comment VARCHAR(150) NOT NULL,
-  order_total FLOAT NOT NULL,
+  total FLOAT NOT NULL,
   cid INT NOT NULL,
   FOREIGN KEY (cid) REFERENCES Customer(cid)
 );

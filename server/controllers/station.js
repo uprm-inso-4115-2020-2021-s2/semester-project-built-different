@@ -2,41 +2,37 @@
 @TYPE:
   PUBLIC
 @DESC:
-  - Create a new meal
+  - Create a new Station
 @RETURN:
   - JSON order Object
 */
-const mealsAdd = async (req, res, pool) => {
-  const { name, price, comments, available, sid } = req.body;
+const StationsAdd = async (req, res, pool) => {
+  const { name, description } = req.body;
   const queryString =
-    "INSERT INTO Meal(name,price,comments,available,sid) VALUES($1,$2,$3,$4,$5)";
+    "INSERT INTO Station(name,description) VALUES($1,$2)";
 
-  await pool.query(
-    queryString,
-    [name, price, comments, available, sid],
-    (err) => {
-      if (err) {
-        res.json(err);
-      } else {
-        res.json(req.body);
-      }
-    },
-  );
+  await pool.query(queryString, [name, description], (err) => {
+    if (err) {
+      res.json(err);
+    } else {
+      res.json(req.body);
+    }
+  });
 };
 /*
 @TYPE:
   PUBLIC
 @DESC:
-  - Fetch all meals that fit the filter, if none
+  - Fetch all Stations that fit the filter, if none
   specified returns all order objects
 @RETURN:
-  - Array of meal objects
+  - Array of Station objects
 */
 
-const mealsGet = async (req, res, pool) => {
+const StationsGet = async (req, res, pool) => {
   const { query } = req;
 
-  let queryString = "SELECT * FROM Meal";
+  let queryString = "SELECT * FROM Station";
   const selectors = Object.keys(query);
 
   if (selectors.length > 0) queryString += "\tWHERE\t ";
@@ -59,14 +55,14 @@ const mealsGet = async (req, res, pool) => {
 @TYPE:
   PUBLIC
 @DESC:
-  - Remove meal by id
+  - Remove Station by id
 @RETURN:
   - id of the removed order
 */
 
-const mealsRemove = async (req, res, pool) => {
+const StationsRemove = async (req, res, pool) => {
   const { id } = req.params;
-  let queryString = "DELETE FROM Meal";
+  let queryString = "DELETE FROM Station";
 
   const selectors = Object.keys(req.body);
   let values = Object.values(req.body);
@@ -79,7 +75,7 @@ const mealsRemove = async (req, res, pool) => {
   });
 
   if (id) {
-    queryString += `\tmid = $${selectors.length + 1}`;
+    queryString += `\tsid = $${selectors.length + 1}`;
     values.push(id);
   }
 
@@ -96,15 +92,15 @@ const mealsRemove = async (req, res, pool) => {
 @TYPE:
   PUBLIC
 @DESC:
-  - update all meals rows that fit the filter and by id
+  - update all Stations rows that fit the filter and by id
 @RETURN:
-  - id of the updated meal
+  - id of the updated Station
 */
 
-const mealsUpdate = async (req, res, pool) => {
+const StationsUpdate = async (req, res, pool) => {
   const { id } = req.params;
 
-  let queryString = "UPDATE Meal SET";
+  let queryString = "UPDATE Station SET";
   const selectors = Object.keys(req.body);
   let values = Object.values(req.body);
 
@@ -117,7 +113,7 @@ const mealsUpdate = async (req, res, pool) => {
   });
 
   if (id) {
-    queryString += `,\tWHERE mid = $${selectors.length + 1}`;
+    queryString += `,\tWHERE sid = $${selectors.length + 1}`;
     values.push(id);
   }
   console.log(values);
@@ -131,8 +127,8 @@ const mealsUpdate = async (req, res, pool) => {
 };
 
 module.exports = {
-  mealsAdd,
-  mealsGet,
-  mealsRemove,
-  mealsUpdate,
+  StationsAdd,
+  StationsGet,
+  StationsRemove,
+  StationsUpdate,
 };
