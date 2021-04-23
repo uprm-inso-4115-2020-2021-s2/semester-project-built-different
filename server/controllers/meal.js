@@ -7,16 +7,21 @@
   - JSON order Object
 */
 const mealsAdd = async (req, res, pool) => {
+  const { name, price, comments, available, sid } = req.body;
   const queryString =
-    "INSERT INTO Meal(name,price,comments,available) VALUES($1,$2,$3,$4)";
+    "INSERT INTO Meal(name,price,comments,available,sid) VALUES($1,$2,$3,$4)";
 
-  await pool.query(queryString, Object.values(req.body), (err) => {
-    if (err) {
-      res.json(err);
-    } else {
-      res.json(req.body);
-    }
-  });
+  await pool.query(
+    queryString,
+    [name, price, comments, available, sid],
+    (err) => {
+      if (err) {
+        res.json(err);
+      } else {
+        res.json(req.body);
+      }
+    },
+  );
 };
 /*
 @TYPE:
@@ -74,7 +79,7 @@ const mealsRemove = async (req, res, pool) => {
   });
 
   if (id) {
-    queryString += `\to_id = $${selectors.length + 1}`;
+    queryString += `\tmid = $${selectors.length + 1}`;
     values.push(id);
   }
 
@@ -112,7 +117,7 @@ const mealsUpdate = async (req, res, pool) => {
   });
 
   if (id) {
-    queryString += `,\tWHERE o_id = $${selectors.length + 1}`;
+    queryString += `,\tWHERE mid = $${selectors.length + 1}`;
     values.push(id);
   }
   console.log(values);

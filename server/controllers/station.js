@@ -2,41 +2,37 @@
 @TYPE:
   PUBLIC
 @DESC:
-  - Create a new order
+  - Create a new Station
 @RETURN:
   - JSON order Object
 */
-const ordersAdd = async (req, res, pool) => {
-  const { timestamp, status, comment, total, cid } = req.body;
+const StationsAdd = async (req, res, pool) => {
+  const { name, description } = req.body;
   const queryString =
-    "INSERT INTO Order_Details(timestamp, status, comment, total, cid) VALUES($1,$2,$3,$4,$5)";
+    "INSERT INTO Station(name,description) VALUES($1,$2)";
 
-  await pool.query(
-    queryString,
-    [timestamp, status, comment, total, cid],
-    (err) => {
-      if (err) {
-        res.json(err);
-      } else {
-        res.json(req.body);
-      }
-    },
-  );
+  await pool.query(queryString, [name, description], (err) => {
+    if (err) {
+      res.json(err);
+    } else {
+      res.json(req.body);
+    }
+  });
 };
 /*
 @TYPE:
   PUBLIC
 @DESC:
-  - Fetch all orders that fit the filter, if none
+  - Fetch all Stations that fit the filter, if none
   specified returns all order objects
 @RETURN:
-  - Array of order objects
+  - Array of Station objects
 */
 
-const ordersGet = async (req, res, pool) => {
+const StationsGet = async (req, res, pool) => {
   const { query } = req;
 
-  let queryString = "SELECT * FROM Order_Details";
+  let queryString = "SELECT * FROM Station";
   const selectors = Object.keys(query);
 
   if (selectors.length > 0) queryString += "\tWHERE\t ";
@@ -59,14 +55,14 @@ const ordersGet = async (req, res, pool) => {
 @TYPE:
   PUBLIC
 @DESC:
-  - Remove order by id
+  - Remove Station by id
 @RETURN:
   - id of the removed order
 */
 
-const ordersRemove = async (req, res, pool) => {
+const StationsRemove = async (req, res, pool) => {
   const { id } = req.params;
-  let queryString = "DELETE FROM Order_Details";
+  let queryString = "DELETE FROM Station";
 
   const selectors = Object.keys(req.body);
   let values = Object.values(req.body);
@@ -79,7 +75,7 @@ const ordersRemove = async (req, res, pool) => {
   });
 
   if (id) {
-    queryString += `\toid = $${selectors.length + 1}`;
+    queryString += `\tsid = $${selectors.length + 1}`;
     values.push(id);
   }
 
@@ -96,15 +92,15 @@ const ordersRemove = async (req, res, pool) => {
 @TYPE:
   PUBLIC
 @DESC:
-  - update all orders rows that fit the filter and by id
+  - update all Stations rows that fit the filter and by id
 @RETURN:
-  - id of the updated order
+  - id of the updated Station
 */
 
-const ordersUpdate = async (req, res, pool) => {
+const StationsUpdate = async (req, res, pool) => {
   const { id } = req.params;
 
-  let queryString = "UPDATE Order_Details SET";
+  let queryString = "UPDATE Station SET";
   const selectors = Object.keys(req.body);
   let values = Object.values(req.body);
 
@@ -117,7 +113,7 @@ const ordersUpdate = async (req, res, pool) => {
   });
 
   if (id) {
-    queryString += `,\tWHERE oid = $${selectors.length + 1}`;
+    queryString += `,\tWHERE sid = $${selectors.length + 1}`;
     values.push(id);
   }
   console.log(values);
@@ -131,8 +127,8 @@ const ordersUpdate = async (req, res, pool) => {
 };
 
 module.exports = {
-  ordersAdd,
-  ordersGet,
-  ordersRemove,
-  ordersUpdate,
+  StationsAdd,
+  StationsGet,
+  StationsRemove,
+  StationsUpdate,
 };
