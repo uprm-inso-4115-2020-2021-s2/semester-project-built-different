@@ -1,7 +1,6 @@
 const { Pool } = require("pg");
 
 const initializeDB = async () => {
-  console.log(process.env.NODE_ENV);
   const pool = await new Pool({
     user: "postgres",
     password: "postgres",
@@ -9,9 +8,16 @@ const initializeDB = async () => {
     host: "db",
     port: 5432,
   });
-  try {
-    await pool.query(
-      `
+
+  const connect = async () => {
+    pool.connect((err) => {
+      if (err) setTimeout(connect, 5000);
+      else console.log("!!!database connected!!!");
+    });
+
+    try {
+      await pool.query(
+        `
       CREATE TABLE Station
       (
         name VARCHAR(250) NOT NULL,
@@ -72,10 +78,13 @@ const initializeDB = async () => {
       );
 
   `,
-    );
-  } catch (err) {
-    console.log(err);
-  }
+      );
+    } catch {
+      // do nothing
+    }
+  };
+
+  connect();
 
   return pool;
 };

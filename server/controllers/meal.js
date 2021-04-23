@@ -9,7 +9,7 @@
 const mealsAdd = async (req, res, pool) => {
   const { name, price, comments, available, sid } = req.body;
   const queryString =
-    "INSERT INTO Meal(name,price,comments,available,sid) VALUES($1,$2,$3,$4)";
+    "INSERT INTO Meal(name,price,comments,available,sid) VALUES($1,$2,$3,$4,$5)";
 
   await pool.query(
     queryString,
