@@ -1,12 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '../../components/Navbar';
 import styles from '../../styles/admin/AddFood.module.css';
 import { Button, Form } from 'react-bootstrap';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
+import { useSelector, useDispatch } from 'react-redux';
+import { mealActions } from '../../store/actions';
+// import { mealSelectors } from '../store/selectors';
 
 export default function AddFood() {
+    const dispatch = useDispatch();
     const router = useRouter();
+    const [name, setName] = useState('');
+    const [price, setPrice] = useState(0);
+    const [comments, setComments] = useState('');
+
+    const handleSubmit = React.useCallback(
+      async (e) => {
+        e.preventDefault();
+  
+        await dispatch(
+          mealActions.addMeal({ 
+            name: name, 
+            price: price, 
+            comments: comments, 
+            available: true 
+          }),
+        );
+
+        setName('');
+        setPrice('')
+        setComments('')
+      },
+      [dispatch, name, price, comments],
+    );
     return (
         <>
             <Head>
@@ -23,22 +50,19 @@ export default function AddFood() {
                     <Form>
                       <Form.Group controlId="exampleForm.ControlInput1">
                         <Form.Label>Nombre</Form.Label>
-                        <Form.Control type="email" placeholder="Comida" />
+                        <Form.Control type="text" placeholder="Comida" onChange={value => setName(value)}/>
                       </Form.Group>
                       <Form.Group controlId="exampleForm.ControlInput1">
                         <Form.Label>Precio ($)</Form.Label>
-                        <Form.Control type="number" placeholder="$0.00" />
+                        <Form.Control type="number" placeholder="$0.00"  onChange={value => setPrice(value)}/>
                       </Form.Group>
                       
                       <Form.Group controlId="exampleForm.ControlTextarea1">
                         <Form.Label>Descripción</Form.Label>
-                        <Form.Control as="textarea" rows={3} />
+                        <Form.Control as="textarea" rows={3} onChange={value => setComments(value)}/>
                       </Form.Group>
-                      <Form.Group controlId="exampleForm.ControlInput1">
-                        <Form.Label>Cantidad</Form.Label>
-                        <Form.Control type="number" placeholder="0" />
-                      </Form.Group>
-                      <Form.Group controlId="exampleForm.ControlSelect1">
+
+                      {/* <Form.Group controlId="exampleForm.ControlSelect1">
                         <Form.Label>Categoria</Form.Label>
                         <Form.Control as="select">
                           <option>Criollo</option>
@@ -47,8 +71,10 @@ export default function AddFood() {
                           <option>Soup</option>
                           <option>Chinese</option>
                         </Form.Control>
-                      </Form.Group>
-                      <Button variant="success">Añadir comida</Button>
+                      </Form.Group> */}
+                      <div onClick={() => handleSubmit}>
+                        <Button variant="success" >Añadir comida</Button>
+                      </div>
                     </Form>
                 </div>
             </div>

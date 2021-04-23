@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../../components/Navbar';
 import styles from '../../styles/admin/Inventario.module.css';
 import { Button, Card } from 'react-bootstrap';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
+import { useSelector, useDispatch } from 'react-redux';
+import { mealActions } from '../../store/actions';
+
 
 export default function Inventario() {
+    const dispatch = useDispatch();
     const router = useRouter();
+    const [food, setFood] = useState('');
     const foodlist = [
         {name: 'Pizza slice', price: 1.50, quantity: 11, image: '/pizza.jpeg' },
         {name: 'Hot dog', price: 2.00 , quantity: 19, image: '/hotdog.jpeg'},
@@ -15,6 +20,14 @@ export default function Inventario() {
         {name: 'Paella', price: 10.00 , quantity: 18, image: '/paella.jpeg'},
         {name: 'Combi china', price: 9.00 , quantity: 13, image: '/combichina.jpeg'},
     ]
+
+    useEffect(async () => {
+        await dispatch(mealActions.getMeals())
+            .then(res => setFood(res.data))
+            .catch(err => console.log(err));
+    }, [router])
+
+    console.log(food)
     return (
         <>
             <Head>
