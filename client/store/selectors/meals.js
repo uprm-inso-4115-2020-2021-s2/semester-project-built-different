@@ -1,7 +1,13 @@
-// import { createSelector } from 'reselect';
+import { createSelector } from 'reselect';
 
-// const selectMeal = (meal) => meal || {};
+const selectMeal = (state) => state.meal || {};
 
-// export const selectMeal = createSelector(
-//     selectMeal
-// )
+export const selectMeals = createSelector(
+  selectMeal,
+  (meal) => meal.meals,
+);
+
+export const selectError = createSelector(
+  selectMeal,
+  (meal) => meal.error,
+);
