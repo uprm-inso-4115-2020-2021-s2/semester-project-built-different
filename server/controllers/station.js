@@ -6,7 +6,7 @@
 @RETURN:
   - JSON order Object
 */
-const StationsAdd = async (req, res, pool) => {
+const stationsAdd = async (req, res, pool) => {
   const { name, description } = req.body;
   const queryString =
     "INSERT INTO Station(name,description) VALUES($1,$2)";
@@ -29,7 +29,7 @@ const StationsAdd = async (req, res, pool) => {
   - Array of Station objects
 */
 
-const StationsGet = async (req, res, pool) => {
+const stationsGet = async (req, res, pool) => {
   const { query } = req;
 
   let queryString = "SELECT * FROM Station";
@@ -60,7 +60,7 @@ const StationsGet = async (req, res, pool) => {
   - id of the removed order
 */
 
-const StationsRemove = async (req, res, pool) => {
+const stationsRemove = async (req, res, pool) => {
   const { id } = req.params;
   let queryString = "DELETE FROM Station";
 
@@ -97,7 +97,7 @@ const StationsRemove = async (req, res, pool) => {
   - id of the updated Station
 */
 
-const StationsUpdate = async (req, res, pool) => {
+const stationsUpdate = async (req, res, pool) => {
   const { id } = req.params;
 
   let queryString = "UPDATE Station SET";
@@ -127,8 +127,8 @@ const StationsUpdate = async (req, res, pool) => {
 };
 
 module.exports = {
-  StationsAdd,
-  StationsGet,
-  StationsRemove,
-  StationsUpdate,
+  stationsAdd,
+  stationsGet,
+  stationsRemove,
+  stationsUpdate,
 };

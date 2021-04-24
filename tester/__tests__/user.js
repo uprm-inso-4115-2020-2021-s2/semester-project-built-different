@@ -7,11 +7,11 @@ describe('Order POST', () => {
   test('This should return the order object json object', async () => {
     // using a sample test order for the POST request
     const testOrder = {
-      order_date: '2021-02-10',
+      timestamp: '2021-02-10',
       status: 'pending',
       comment: 'no onions',
       order_total: 23.99,
-      c_id: 1,
+      cid: 1,
     };
 
     // make a POST request to add a new user to the db
