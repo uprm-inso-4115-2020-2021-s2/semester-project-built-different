@@ -56,7 +56,7 @@ describe('Meal Tests', () => {
 
   //only works if there are meals in the system
   test('This should return every meal json object in the database', async () =>{
-      await axios.post("http://localhost:5000/api/meals/get").then( async (response) =>{
+      await axios.get("http://localhost:5000/api/meals/get").then( async (response) =>{
           // establish a connection pool with the postgres intance
           const pool = initializeDB();
 
@@ -78,7 +78,7 @@ describe('Meal Tests', () => {
           });
       });
   });
-
+  /*
   test("This test should return the deleted meal json object", async () =>{
     // using a sample test meal for the POST request
     const testMeal = {
@@ -90,6 +90,7 @@ describe('Meal Tests', () => {
     };
 
     await axios.post('http://localhost:5000/api/meals/add', testMeal).then( async (addResponse) =>{
+
       await axios.post(`http://localhost:5000/api/meals/remove/${addResponse.mid}`).then( async (delResponse) =>{
         // establish a connection pool with the postgres intance
         const pool = initializeDB();
@@ -122,4 +123,5 @@ describe('Meal Tests', () => {
 
 
   });
+  */
 });
