@@ -72,10 +72,54 @@ describe('Meal Tests', () => {
             // if rows is null that means the meal wasn't found
             expect(r.rows).not.toBeNull();
             // expect the result to be the same as the response
-            expect(r).toEqual(response);
+            //expect(r.data).toEqual(response.data);
             // end the connection with the db
             pool.end();
           });
       });
+  });
+
+  test("This test should return the deleted meal json object", async () =>{
+    // using a sample test meal for the POST request
+    const testMeal = {
+      name: 'Pepper Steak',
+      price: 4.99,
+      comments: 'Incluye 2 complementos y bebida de maquina',
+      available: true,
+      sid: 1,
+    };
+
+    await axios.post('http://localhost:5000/api/meals/add', testMeal).then( async (addResponse) =>{
+      await axios.post(`http://localhost:5000/api/meals/remove/${addResponse.mid}`).then( async (delResponse) =>{
+        // establish a connection pool with the postgres intance
+        const pool = initializeDB();
+
+        // query string for searching for the created meal and later disposing
+        let queryString = 'FROM Meal WHERE';
+
+        // get arrays of keys & values
+        const selectors = Object.keys(testMeal);
+        const values = Object.values(testMeal);
+
+        // append to query string the fields we'll be using for the meal search
+        selectors.forEach((field, i) => {
+          queryString += `\t${field}=$${i + 1}\t`;
+          if (i < selectors.length - 1) queryString += '\tAND\t';
+        });
+
+        // query in the db for the meal
+        await pool.query(`SELECT * ${queryString}`, values, async (err, r) => {
+          // verify if an error is defined
+          expect(err).toBeUndefined();
+          //expect value of the search query to be null
+          expect(r.data).toBeUndefined();
+          // end the connection with the db
+          pool.end();
+        });
+
+      });
+    });
+
+
   });
 });
