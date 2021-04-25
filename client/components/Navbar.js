@@ -31,6 +31,7 @@ export default function Navbar() {
           >
             <strong>Cerrar</strong>
           </span>
+
           <span
             tabIndex="0"
             role="button"
@@ -39,7 +40,18 @@ export default function Navbar() {
           >
             Inicio
           </span>
+
+          <span
+          tabIndex="0"
+          role="button"
+          onKeyDown={() => router.push('/meals')}
+          onClick={() => router.push('/meals')}
+          >
+            Buscar comidas
+          </span>
+
           <span>Favoritos</span>
+
           <span
             tabIndex="0"
             role="button"
