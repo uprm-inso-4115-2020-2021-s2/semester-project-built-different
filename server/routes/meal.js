@@ -6,6 +6,7 @@ const mealRoutes = (pool) => {
     mealsGet,
     mealsRemove,
     mealsUpdate,
+    mealsSearch,
   } = require("../controllers/meal");
   const router = Router();
 
@@ -56,7 +57,14 @@ const mealRoutes = (pool) => {
     mealsUpdate(req, res, pool),
   );
 
+  // browse meals page
+router.get("/search", (req,res) =>
+  mealsSearch(req, res, pool),
+);
+
   return router;
 };
+
+
 
 module.exports = mealRoutes;

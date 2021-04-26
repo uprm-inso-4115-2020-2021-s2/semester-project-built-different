@@ -16,10 +16,10 @@ export default function Meals() {
   const onSubmitForm = async e => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://localhost:5000/users/?name=${name}`);
+      const response = await fetch(`http://localhost:5000/api/meals/search/?name=${name}`);
 
       const parseResponse = await response.json();
-
+      //console.log(parseResponse);
       setUsers(parseResponse);
     } catch (err) {
       console.error(err.message);
@@ -40,22 +40,6 @@ export default function Meals() {
             />
             <button className="btn btn-success">Submit</button>
           </form>
-          <table className="table my-5">
-            <thead>
-              <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-              </tr>
-            </thead>
-            <tbody>
-              {users.map(user => (
-                <tr key={user.user_id}>
-                  <td>{user.first_name}</td>
-                  <td>{user.last_name}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
           {users.length === 0 && <p>No Results Found</p>}
         </div>
       </Fragment>

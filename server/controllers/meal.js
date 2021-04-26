@@ -130,9 +130,25 @@ const mealsUpdate = async (req, res, pool) => {
   });
 };
 
+const mealsSearch = async (req, res, pool) => {
+  const { name } = req.query;
+
+  let queryString = "SELECT * FROM Meal WHERE name ILIKE $1";
+
+
+  await pool.query(queryString, [`%${name}%`], (err, r) => {
+    if (err) {
+      res.json(err);
+    } else {
+      res.json(r.rows);
+    }
+  });
+};
+
 module.exports = {
   mealsAdd,
   mealsGet,
   mealsRemove,
   mealsUpdate,
+  mealsSearch,
 };
