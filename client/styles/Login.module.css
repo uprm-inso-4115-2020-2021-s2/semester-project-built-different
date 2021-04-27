@@ -1,28 +1,41 @@
 .main {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  height: 400px;
+  width: 400px;
+  background-color: #53AB4B;
+}
+
+.jumbotron {
+background-image: url('../public/cafeteriaRUM.png');
+width: 100%; 
+height: 500px;
+background-position: center;
+display: flex;
+justify-content: center;
+align-items: center;
+color: #F6F6F6;
 }
 
 .footer {
-    width: 100%;
-    height: 100px;
-    border-top: 1px solid #eaeaea;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .footer img {
-    margin-left: 0.5rem;
-  }
-  
-  .footer a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+  width: 100%;
+  height: 100px;
+  border-top: 1px solid #eaeaea;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer img {
+  margin-left: 0.5rem;
+}
+
+.footer a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

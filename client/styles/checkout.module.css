@@ -21,6 +21,16 @@
 
       color: #000000;
     }
+ 
+    .searchgrid {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      padding-top: 32px;
+  
+  }
+
   
   .footer {
       width: 100%;

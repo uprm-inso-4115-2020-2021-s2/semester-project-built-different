@@ -24,7 +24,7 @@ export default function Details() {
     return (
         <>
             <Head>
-                <title>RUM2GO - Inventario</title>
+                <title>RUM2GO: Detalles</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Navbar />

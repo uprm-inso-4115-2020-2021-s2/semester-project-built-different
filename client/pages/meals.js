@@ -36,6 +36,11 @@ export default function Meals() {
     ]
     return (
         <Fragment>
+        <Head>
+        <title>RUM2GO: Menu</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+        <Navbar/>
         <div className="container text-center">
           <h1 className="my-5">Cafetería</h1>
           <form className="d-flex" >

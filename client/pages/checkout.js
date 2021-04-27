@@ -1,88 +1,56 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
+import Head from 'next/head';
+import Link from 'next/link';
+import { Button, Form, Card } from 'react-bootstrap';
+import { useRouter } from 'next/router';
+import { useSelector, useDispatch } from 'react-redux';
 import styles from '../styles/checkout.module.css';
 import Navbar from '../components/Navbar';
-import { useRouter } from 'next/router';
-import Image from 'next/image';
-import { func } from 'prop-types';
-import { Card, Form, Button } from 'react-bootstrap';
+import { authActions } from '../store/actions';
+import { authSelectors } from '../store/selectors';
 
+export default function Checkout() {
+    const [name, setName] = useState("");
+    const [users, setUsers] = useState([]);
+    const router = useRouter();
 
-export default function checkout(){
-    const [payment, setPayment] = useState('')
-    const [name, setName] = useState('')
-    const [cardNum, setCardNum] = useState('')
-    const [expDate, setExpDate] = useState('')
-    const [cvv, setCvv] = useState('')
-    const handleChange=(e)=>{
-        setVal(e.target.value);
-    }
-
-    const foodlistDUMMY = [
-        {name: 'Pizza slice', price: 1.50, quantity: 2, image: '/pizza.jpeg' },
-        {name: 'Hot dog', price: 2.00 , quantity: 2, image: '/hotdog.jpeg'},
-        {name: 'Bistec Encebollado', price: 6.00 , quantity: 1, image: '/bistec.jpeg'},
+    const foodlist = [
+      {name: 'Pizza slice', price: 1.50, quantity: 1, image: '/pizza.jpeg' },
+      {name: 'Hot dog', price: 2.00 , quantity: 1, image: '/hotdog.jpeg'},
+      {name: 'Burrito', price: 3.50 , quantity: 1, image: '/burrito.jpeg'},
+      {name: 'Bistec Encebollado', price: 6.00 , quantity: 1, image: '/bistec.jpeg'},
+      {name: 'Paella', price: 10.00 , quantity: 1, image: '/paella.jpeg'},
+      {name: 'Combi china', price: 9.00 , quantity: 1, image: '/combichina.jpeg'},
     ]
-    return(
-    <>
-    <Navbar/>
-    <div className={styles.container}>
-    <h3>Mi Orden</h3>
-    <div className={styles.megaFlexbox}>
-    <div className={styles.ordenminicard}>
-            {foodlistDUMMY.map(food => (
-                <div>
-                    <Card style={{ width: '600px', marginTop: '4px', marginBottom: '100px' }}>
-                        <Card.Img variant="bottom" src={food.image} />
-                        <Card.Body>
-                            <Card.Title>{food.name}</Card.Title>
-                            <Card.Text>{(food.price).toFixed(2)}</Card.Text>
-                        </Card.Body>
-                        <h5>Instrucciones Especiales</h5>
-                        <p>AHHHHHHHHH!!!!!!</p>
-                    </Card>
-                </div>
+    return (
+        <Fragment>
+        <Head>
+        <title>RUM2GO: Carrito</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+        <Navbar/>
+        <div className="container text-center">
+          <h1 className="my-5">Mi orden</h1>
+          <p>Para confirmar su orden haga click en el boton de confirmar. Una vez su orden este lista se le notificara para que pase a recogerla.</p>
+          <p><b>Su total es de $26.00</b></p>
+          <Button >
+            Confirmar
+          </Button>
+          <div className={styles.searchgrid}>
+          {foodlist.map(food => (
+            <div>
+                <Card style={{ width: '250px', marginTop: '4px', marginBottom: '100px' }}>
+                <Card.Img variant="bottom" src={food.image} style={{ height: '150px'}} />
+                <Card.Body>
+                    <Card.Title>Nombre: {food.name}</Card.Title>
+                    <Card.Text>Precio: ${(food.price).toFixed(2)}</Card.Text>
+                    <Card.Text>Cantidad: {(food.quantity)}</Card.Text>
+                </Card.Body>
+                </Card>
+            </div>
             ))}
+          </div>
         </div>
-        <div className={styles.pagogrid}>
-            <h2>Manera de pago</h2>
-            <Form>
-                <Form.Group controlId="payment">
-                <Form.Check type="radio" name="payment" label=" Efectivo al recoger"
-                onChange={(event) => setPayment(event.target.value)}></Form.Check>
-                <Form.Check type="radio" name="payment" label=" Crédito"
-                onChange={(event) => setPayment(event.target.value)}></Form.Check>
-                <Form.Check type="radio" name="payment" label=" Débito-ATH"
-                onChange={(event) => setPayment(event.target.value)}></Form.Check>
-                </Form.Group>
-
-                <Form.Group controlId="cardName">
-                <Form.Control type="name" placeholder="Nombre en la tarjeta" value={name}
-                    onChange={(event) => setName(event.target.value)}/>
-              </Form.Group>
-              <Form.Group controlId="cardNum">
-                <Form.Control type="int" placeholder="Número de tarjeta" value={cardNum}
-                    onChange={(event) => setCardNum(event.target.value)}/>
-              </Form.Group>
-
-              <Form.Group controlId="expDate">
-                <Form.Control type="date" placeholder="Fecha de Exp" value={expDate}
-                    onChange={(event) => setExpDate(event.target.value)}/>
-              </Form.Group>
-
-              <Form.Group controlId="cvv">
-                <Form.Control type="string" placeholder="CVV" value={cvv}
-                    onChange={(event) => setCvv(event.target.value)}/>
-              </Form.Group>
-              <Button variant="primary" type="submit">Pagar</Button>
-            </Form>
-        </div>
-    </div>
-        
-    </div>
-
-    <footer className={styles.footer}>
-          <h5>RUM2GO</h5>
-    </footer> 
-    </>
-    )
+      </Fragment>
+    );
 }

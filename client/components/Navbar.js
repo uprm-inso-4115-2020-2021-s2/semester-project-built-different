@@ -50,7 +50,13 @@ export default function Navbar() {
             Buscar comidas
           </span>
 
-          <span>Favoritos</span>
+          <span
+          tabIndex="0"
+          role="button"
+          onKeyDown={() => router.push('/checkout')}
+          onClick={() => router.push('/checkout')}>
+            Carrito
+          </span>
 
           <span
             tabIndex="0"

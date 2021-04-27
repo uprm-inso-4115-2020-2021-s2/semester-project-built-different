@@ -34,15 +34,16 @@ export default function SignUp() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>RUM2GO: Sign up</title>
+        <title>RUM2GO: Crear tu Cuenta</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar />
-      <main className={styles.main}>
+      <main className={styles.jumbotron}>
+      <div className={styles.main}>
         <Form onSubmit={handleSubmit}>
           <h2>Crear cuenta</h2>
           <Form.Group controlId="formBasicEmail">
-            <Form.Label>Nombre</Form.Label>
+            <Form.Label >Nombre</Form.Label>
             <Form.Control
               type="name"
               placeholder="Nombre"
@@ -51,7 +52,7 @@ export default function SignUp() {
             />
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
+            <Form.Label >Correo Electronico</Form.Label>
             <Form.Control
               type="email"
               placeholder="Enter email"
@@ -61,7 +62,7 @@ export default function SignUp() {
           </Form.Group>
 
           <Form.Group controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
+            <Form.Label >Contraseña</Form.Label>
             <Form.Control
               type="password"
               placeholder="Password"
@@ -72,10 +73,11 @@ export default function SignUp() {
             <p>{error || ''}</p>
           </Form.Group>
 
-          <Button variant="primary" type="submit">
+          <Button variant="primary" type="submit" onClick={() => router.push('/meals')}>
             Entrar
           </Button>
         </Form>
+        </div>
       </main>
 
       <footer className={styles.footer}>

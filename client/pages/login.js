@@ -36,15 +36,16 @@ export default function Login() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>RUM2GO: Login</title>
+        <title>RUM2GO: Inicio</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar />
-      <main className={styles.main}>
+      <main className={styles.jumbotron}>
+      <div className={styles.main}>
         <Form onSubmit={handleSubmit}>
           <h2>Iniciar sesión</h2>
           <Form.Group controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
+            <Form.Label>Correo Electronico</Form.Label>
             <Form.Control
               type="email"
               placeholder="Enter email"
@@ -52,12 +53,12 @@ export default function Login() {
               onChange={(event) => setEmail(event.target.value)}
             />
             <Form.Text className="text-muted">
-              We&apposll never share your email with anyone else.
+              No compartimos tu correo con nadie.
             </Form.Text>
           </Form.Group>
 
           <Form.Group controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
+            <Form.Label>Contraseña</Form.Label>
             <Form.Control
               type="password"
               placeholder="Password"
@@ -76,6 +77,7 @@ export default function Login() {
             Entrar
           </Button>
         </Form>
+        </div>
       </main>
 
       <footer className={styles.footer}>
