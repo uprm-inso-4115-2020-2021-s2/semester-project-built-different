@@ -1,0 +1,66 @@
+.container{
+    display:flex;
+    height: 700px;
+    justify-content:center;
+}
+
+.visualSide{
+    width:50%;
+}
+
+.buttonContainer{
+    display: flex;
+    margin-bottom: 75px;
+    justify-content: space-around;
+}
+
+.favoriteButton{
+    width: 8%;
+    height: 40px;
+}
+
+.addToCartButton{
+    width: 35%;
+    height: 40px;
+}
+
+.infoSide{
+    width:50%;
+    color: white;
+    background-color:#030803F2;
+    opacity: 0.95;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-evenly;
+    
+
+}
+
+.foodText{
+    width: 80%;
+    margin:  100px auto;
+}
+
+.foodName{
+    width: 80%;
+    display: inline-block;
+}
+
+.foodDescription{
+    width: 85%;
+    
+}
+
+.foodPrice{
+    color: #53AB4B;
+    text-align: bottom;
+    width: 15%;
+    display: inline-block;
+}
+
+.nutritionContainer{
+    display: flex;
+    justify-content: center;
+}
+
+

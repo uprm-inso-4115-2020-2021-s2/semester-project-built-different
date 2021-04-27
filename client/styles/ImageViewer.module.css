@@ -1,0 +1,40 @@
+.imageViewer {
+    display: flex;
+    justify-content: center;
+    height: 500px;
+    align-items: center;
+  }
+  
+  .image {
+    width: 300px;
+    height: 300px;
+    margin: 98px 100px;
+    border-radius: 10px;
+  }
+  
+  .rightArrow {
+    font-size: 3rem;
+    color: #000;
+    z-index: 10;
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  .leftArrow {
+    font-size: 3rem;
+    color: #000;
+    z-index: 10;
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  .slide {
+    opacity: 0;
+    transition-duration: 1s ease;
+  }
+  
+  .activeSlide {
+    opacity: 1;
+    transition-duration: 1s;
+    transform: scale(1.08);
+  }

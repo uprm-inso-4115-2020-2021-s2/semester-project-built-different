@@ -1,0 +1,19 @@
+.container{
+    width: 100px;
+    height: 100px;
+    margin: 20px;
+    border: 2px solid white;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.nutritionName{
+    width: 90%;
+    margin: auto;
+    border-bottom: 1px solid white;
+    margin-bottom: 15px;
+}
+
+.nutritionValue{
+    font-size: 1.5em;
+}
