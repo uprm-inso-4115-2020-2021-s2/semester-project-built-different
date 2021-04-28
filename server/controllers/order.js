@@ -130,9 +130,33 @@ const ordersUpdate = async (req, res, pool) => {
   });
 };
 
+/*
+@TYPE:
+  PUBLIC
+@DESC:
+  - Fetch all orders from a customer ordered by their date.
+@RETURN:
+  - Array of order objects
+*/
+
+const ordersGetOrderBy = async (req, res, pool) => {
+  const { cid } = req.query;
+
+  let queryString = "SELECT * FROM Order_Details WHERE cid = $1 ORDER BY timestamp";
+
+  await pool.query(queryString, [cid], (err, r) => {
+    if (err) {
+      res.json(err);
+    } else {
+      res.json(r.rows);
+    }
+  });
+};
+
 module.exports = {
   ordersAdd,
   ordersGet,
   ordersRemove,
   ordersUpdate,
+  ordersGetOrderBy,
 };
