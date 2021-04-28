@@ -1,9 +1,14 @@
 import styles from '../styles/settings.module.css';
 import Navbar from '../components/Navbar';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
+
 
 
 export default function settings(){
+    const userID = 5;
+    const router = useRouter();
+
     return(
         <>
             <Navbar/>
@@ -19,12 +24,12 @@ export default function settings(){
                 <div className={styles.settingsgrid}>
                     <div className={styles.minicard}>
                         <Image src="/userpic.png" height={99} width={98}/>
-                        <a href="#">Edite su perfíl </a>
+                        <a href="#">Edite su perfil </a>
                         <Image src="/green-arrow.png" height={45} width={42}/>
                     </div>
                     <div className={styles.minicard}>
                         <Image src="/moneyIcon.png" height={101} width={98}/>
-                        <a href="#">Historial de Ordenes </a>
+                        <a href="#" onClick={() => router.push(`/orderHistory/?userID=${userID}`)}>Historial de Ordenes </a>
                         <Image src="/green-arrow.png" height={45} width={42}/>
                     </div>
                     <div className={styles.minicard}>

@@ -6,6 +6,7 @@ const orderRoutes = (pool) => {
     ordersGet,
     ordersRemove,
     ordersUpdate,
+    ordersGetOrderBy,
   } = require("../controllers/order");
   const router = Router();
 
@@ -22,7 +23,7 @@ const orderRoutes = (pool) => {
 
   /*
 @TYPE:
-  POST
+  GET
 @DESC:
   - Get all orders that satifsy the filter requirements
 @RETURN:
@@ -33,7 +34,7 @@ const orderRoutes = (pool) => {
 
   /*
 @TYPE:
-  GET
+  DELETE
 @DESC:
   - remove an order by id
 @RETURN:
@@ -54,6 +55,18 @@ const orderRoutes = (pool) => {
 */
   router.put("/update/:id?", (req, res) =>
     ordersUpdate(req, res, pool),
+  );
+
+    /*
+@TYPE:
+  GET
+@DESC:
+  - Get all orders by customer id and ordered by date.
+@RETURN:
+  - Array of JSON objects (orders)
+*/
+  router.get("/getordered", (req, res) => 
+  ordersGetOrderBy(req, res, pool)
   );
 
   return router;
