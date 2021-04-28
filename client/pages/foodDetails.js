@@ -8,15 +8,17 @@ import { Button } from 'react-bootstrap';
 import {ImageViewerData} from '../components/ImageViewerData'; 
 import { useRouter } from 'next/router';
 
-export async function getStaticProps(){
-    const res = await fetch("http://192.168.0.5/api/meals/get?name=Fetuccini");
-    return{
-        props:{meal: res}
-    }
-}
 
-export default function FoodDetails({ meal }){
-    const router = useRouter;
+// export async function getStaticProps(){
+//     const res = await fetch("http://localhost:5000/api/meals/get?name=Fetuccini");
+//     return{
+//         props:{meal: res}
+//     }
+// }
+
+
+export default function FoodDetails(){
+    const router = useRouter();
 
     return(
         <div>
@@ -30,15 +32,15 @@ export default function FoodDetails({ meal }){
                 <div className={styles.visualSide}>
                     <ImageViewer slides={ImageViewerData}/>
                     <div className={styles.buttonContainer}>
-                        <Button className={styles.favoriteButton}></Button>
-                        <Button className={styles.addToCartButton}></Button>
+                        <button className={styles.favoriteButton}></button>
+                        <button className={styles.addToCartButton}></button>
                     </div>
                 </div>
                 <div className={styles.infoSide}>
                     <div className={styles.foodText}>
-                        <h1 className={styles.foodName}>{meal.name}</h1>
-                        <h3 className={styles.foodPrice}>{meal.price}</h3>
-                        <p className={styles.foodDescription}>{meal.comments}</p>
+                        <h1 className={styles.foodName}>Grilled Cheese</h1>
+                        <h3 className={styles.foodPrice}>2.99</h3>
+                        <p className={styles.foodDescription}>Two slices of toasts with melted cheese in between.</p>
                     </div>
                     <div className={styles.nutritionContainer}>
                         <NutritionBox name="Calorías" value="100"/>
