@@ -8,7 +8,14 @@ import { Button } from 'react-bootstrap';
 import {ImageViewerData} from '../components/ImageViewerData'; 
 import { useRouter } from 'next/router';
 
-export default function FoodDetails(){
+export async function getStaticProps(){
+    const res = await fetch("http://192.168.0.5/api/meals/get?name=Fetuccini");
+    return{
+        props:{meal: res}
+    }
+}
+
+export default function FoodDetails({ meal }){
     const router = useRouter;
 
     return(
@@ -29,9 +36,9 @@ export default function FoodDetails(){
                 </div>
                 <div className={styles.infoSide}>
                     <div className={styles.foodText}>
-                        <h1 className={styles.foodName}>Grilled Cheese</h1>
-                        <h3 className={styles.foodPrice}>2.99</h3>
-                        <p className={styles.foodDescription}>It is made with real cheese</p>
+                        <h1 className={styles.foodName}>{meal.name}</h1>
+                        <h3 className={styles.foodPrice}>{meal.price}</h3>
+                        <p className={styles.foodDescription}>{meal.comments}</p>
                     </div>
                     <div className={styles.nutritionContainer}>
                         <NutritionBox name="Calorías" value="100"/>
