@@ -1,6 +1,6 @@
 .container{
     display:flex;
-    height: 700px;
+    height: 1000px;
     justify-content:center;
 }
 
@@ -16,12 +16,19 @@
 
 .favoriteButton{
     width: 8%;
-    height: 40px;
+    height: 80px;
+    background: url("../public/Heart.png");
+    background-position: center;
+    border-radius: 100px;
+    mix-blend-mode: normal;
+
 }
 
 .addToCartButton{
     width: 35%;
-    height: 40px;
+    height: 55px;
+    background: #53AB4B;
+    border-radius: 15px;
 }
 
 .infoSide{

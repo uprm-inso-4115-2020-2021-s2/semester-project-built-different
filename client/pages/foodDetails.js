@@ -33,19 +33,19 @@ export default function FoodDetails(){
                     <ImageViewer slides={ImageViewerData}/>
                     <div className={styles.buttonContainer}>
                         <button className={styles.favoriteButton}></button>
-                        <button className={styles.addToCartButton}></button>
+                        <Button className={styles.addToCartButton}>Añadir a bandeja</Button>
                     </div>
                 </div>
                 <div className={styles.infoSide}>
                     <div className={styles.foodText}>
-                        <h1 className={styles.foodName}>Grilled Cheese</h1>
-                        <h3 className={styles.foodPrice}>2.99</h3>
-                        <p className={styles.foodDescription}>Two slices of toasts with melted cheese in between.</p>
+                        <h1 className={styles.foodName}>Tostadas con queso</h1>
+                        <h3 className={styles.foodPrice}>2.50</h3>
+                        <p className={styles.foodDescription}>Unas deliciosas tostadas de pan Holsum® con queso americano Borden® y mantequilla. </p>
                     </div>
                     <div className={styles.nutritionContainer}>
-                        <NutritionBox name="Calorías" value="100"/>
-                        <NutritionBox name="Azucar" value="100g"/>
-                        <NutritionBox name="Fibras" value="100g"/>
+                        <NutritionBox name="Calorías" value="410"/>
+                        <NutritionBox name="Azucar" value="2.40g"/>
+                        <NutritionBox name="Fibras" value="1.20g"/>
                     </div>
                     
                 </div>
